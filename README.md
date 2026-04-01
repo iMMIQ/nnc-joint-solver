@@ -40,3 +40,16 @@ Run tests from the parent checkout or inside this repository:
 pytest tests/test_solver.py -v
 ```
 
+## Benchmark
+
+You can benchmark solver quality independently from the compiler once a fixed
+`joint_tiling_schedule_problem_v1` JSON has been exported:
+
+```bash
+python benchmarks/run_solver_benchmark.py \
+  --problem benchmarks/problems/resnet18_o3_1m.problem.json
+```
+
+The benchmark score is the solver's returned `objective_value` (makespan). A
+smaller score is better. If the solver fails to produce a valid solution, the
+benchmark reports `score: null` plus the structured failure fields.
