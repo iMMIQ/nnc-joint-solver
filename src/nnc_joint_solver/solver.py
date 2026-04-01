@@ -199,12 +199,21 @@ class BaselineJointScheduleSolver(JointScheduleSolver):
         for edge in problem.dependency_edges:
             if edge.src_action_id in mandatory_action_ids and edge.dst_action_id in mandatory_action_ids:
                 predecessor_ids[edge.dst_action_id].append(edge.src_action_id)
+        action_order = {
+            action.action_id: index for index, action in enumerate(problem.actions)
+        }
 
         for action_id in schedule_order:
             action = active_actions[action_id]
-            earliest = max(
-                [resource_available[action.resource_kind.value]]
-                + [end_by_action[pred] for pred in predecessor_ids.get(action_id, ())]
+            earliest = _earliest_action_start(
+                action_id=action_id,
+                action=action,
+                active_actions=active_actions,
+                predecessor_ids=predecessor_ids,
+                start_by_action=start_by_action,
+                end_by_action=end_by_action,
+                resource_available=resource_available,
+                action_order=action_order,
             )
             start_by_action[action_id] = earliest
             end_by_action[action_id] = earliest + action.duration + action.launch_overhead
@@ -301,6 +310,24 @@ def _topological_action_order(
     successors: dict[str, list[str]] = {action_id: [] for action_id in active_action_ids}
     predecessor_counts: dict[str, int] = {action_id: 0 for action_id in active_action_ids}
     order_index = {action.action_id: index for index, action in enumerate(problem.actions)}
+    actions_by_id = {
+        action.action_id: action for action in problem.actions if action.action_id in active_action_ids
+    }
+    value_size_by_id = {value.value_id: value.size_bytes for value in problem.values}
+
+    def _ready_priority(action_id: str) -> tuple[int, int, int, int]:
+        action = actions_by_id[action_id]
+        if action.kind is JointActionKind.COMPUTE:
+            kind_rank = 0
+            write_bytes = sum(value_size_by_id.get(value_id, 0) for value_id in action.writes)
+            read_bytes = sum(value_size_by_id.get(value_id, 0) for value_id in action.reads)
+            return (kind_rank, write_bytes, read_bytes, order_index[action_id])
+        if action.kind is JointActionKind.DMA_OUT:
+            return (1, 0, 0, order_index[action_id])
+        if action.kind is JointActionKind.DMA_IN:
+            return (2, 0, 0, order_index[action_id])
+        return (3, 0, 0, order_index[action_id])
+
     for edge in problem.dependency_edges:
         if edge.src_action_id not in active_action_ids or edge.dst_action_id not in active_action_ids:
             continue
@@ -308,20 +335,117 @@ def _topological_action_order(
         predecessor_counts[edge.dst_action_id] += 1
     ready = sorted(
         [action_id for action_id, count in predecessor_counts.items() if count == 0],
-        key=order_index.__getitem__,
+        key=_ready_priority,
     )
     order: list[str] = []
     while ready:
         action_id = ready.pop(0)
         order.append(action_id)
-        for successor_id in sorted(successors[action_id], key=order_index.__getitem__):
+        for successor_id in sorted(successors[action_id], key=_ready_priority):
             predecessor_counts[successor_id] -= 1
             if predecessor_counts[successor_id] == 0:
                 ready.append(successor_id)
-                ready.sort(key=order_index.__getitem__)
+                ready.sort(key=_ready_priority)
     if len(order) != len(active_action_ids):
         return None
     return tuple(order)
+
+
+def _earliest_action_start(
+    *,
+    action_id: str,
+    action: JointAction,
+    active_actions: dict[str, JointAction],
+    predecessor_ids: dict[str, list[str]],
+    start_by_action: dict[str, int],
+    end_by_action: dict[str, int],
+    resource_available: dict[str, int],
+    action_order: dict[str, int],
+) -> int:
+    predecessor_end = max(
+        [0] + [end_by_action[pred] for pred in predecessor_ids.get(action_id, ())]
+    )
+    earliest = max(resource_available[action.resource_kind.value], predecessor_end)
+    if action.kind is not JointActionKind.DMA_IN:
+        return earliest
+
+    consumer_id = _paired_consumer_compute_action_id(
+        action_id=action_id,
+        action=action,
+        active_actions=active_actions,
+        predecessor_ids=predecessor_ids,
+        action_order=action_order,
+    )
+    if consumer_id is None:
+        return earliest
+
+    consumer = active_actions[consumer_id]
+    non_dma_predecessor_end = max(
+        [
+            0,
+            *[
+                end_by_action[pred]
+                for pred in predecessor_ids.get(consumer_id, ())
+                if pred != action_id
+                and active_actions[pred].kind is not JointActionKind.DMA_IN
+                and pred in end_by_action
+            ],
+        ]
+    )
+    consumer_ready = max(
+        non_dma_predecessor_end,
+        resource_available[consumer.resource_kind.value],
+    )
+    sibling_dma_ids = sorted(
+        [
+            pred
+            for pred in predecessor_ids.get(consumer_id, ())
+            if active_actions[pred].kind is JointActionKind.DMA_IN
+        ],
+        key=action_order.__getitem__,
+    )
+    trailing_dma_cost = 0
+    seen_self = False
+    for sibling_id in reversed(sibling_dma_ids):
+        if sibling_id == action_id:
+            seen_self = True
+            break
+        sibling = active_actions[sibling_id]
+        trailing_dma_cost += sibling.duration + sibling.launch_overhead
+    if not seen_self:
+        return earliest
+
+    latest_start_without_stall = (
+        consumer_ready
+        - trailing_dma_cost
+        - action.duration
+        - action.launch_overhead
+    )
+    return max(earliest, latest_start_without_stall)
+
+
+def _paired_consumer_compute_action_id(
+    *,
+    action_id: str,
+    action: JointAction,
+    active_actions: dict[str, JointAction],
+    predecessor_ids: dict[str, list[str]],
+    action_order: dict[str, int],
+) -> str | None:
+    if action.region_id is None or action.recipe_id is None:
+        return None
+
+    candidates = [
+        other.action_id
+        for other in active_actions.values()
+        if other.kind is JointActionKind.COMPUTE
+        and other.region_id == action.region_id
+        and other.recipe_id == action.recipe_id
+        and action_id in predecessor_ids.get(other.action_id, ())
+    ]
+    if not candidates:
+        return None
+    return min(candidates, key=action_order.__getitem__)
 
 
 def _generated_residency_items(

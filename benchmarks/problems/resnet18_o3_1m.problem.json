@@ -2,7 +2,7 @@
   "actions": [
     {
       "action_id": "fused_conv_relu_1.recipe0.dma_in.input",
-      "duration": 5251,
+      "duration": 5079,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -20,7 +20,7 @@
     },
     {
       "action_id": "fused_conv_relu_1.recipe0.dma_in.onnx::Conv_193",
-      "duration": 1188,
+      "duration": 306,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -38,7 +38,7 @@
     },
     {
       "action_id": "fused_conv_relu_1.recipe0.compute",
-      "duration": 76848,
+      "duration": 74104,
       "is_optional": false,
       "kind": "compute",
       "launch_overhead": 16,
@@ -57,7 +57,7 @@
     },
     {
       "action_id": "/maxpool/MaxPool.recipe0.compute",
-      "duration": 794,
+      "duration": 738,
       "is_optional": false,
       "kind": "compute",
       "launch_overhead": 10,
@@ -75,7 +75,7 @@
     },
     {
       "action_id": "fused_conv_relu_3.recipe0.dma_in.onnx::Conv_196",
-      "duration": 4620,
+      "duration": 1164,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -93,7 +93,7 @@
     },
     {
       "action_id": "fused_conv_relu_3.recipe0.compute",
-      "duration": 6820,
+      "duration": 6568,
       "is_optional": false,
       "kind": "compute",
       "launch_overhead": 16,
@@ -112,7 +112,7 @@
     },
     {
       "action_id": "/layer1/layer1.0/conv2/Conv.recipe0.dma_in.onnx::Conv_199",
-      "duration": 4620,
+      "duration": 1164,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -130,7 +130,7 @@
     },
     {
       "action_id": "/layer1/layer1.0/conv2/Conv.recipe0.compute",
-      "duration": 6820,
+      "duration": 6568,
       "is_optional": false,
       "kind": "compute",
       "launch_overhead": 16,
@@ -149,7 +149,7 @@
     },
     {
       "action_id": "fused_add_relu_19.recipe0.compute",
-      "duration": 1522,
+      "duration": 1466,
       "is_optional": false,
       "kind": "compute",
       "launch_overhead": 10,
@@ -168,7 +168,7 @@
     },
     {
       "action_id": "fused_conv_relu_5.recipe0.dma_in.onnx::Conv_202",
-      "duration": 4620,
+      "duration": 1164,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -186,7 +186,7 @@
     },
     {
       "action_id": "fused_conv_relu_5.recipe0.compute",
-      "duration": 6820,
+      "duration": 6568,
       "is_optional": false,
       "kind": "compute",
       "launch_overhead": 16,
@@ -205,7 +205,7 @@
     },
     {
       "action_id": "/layer1/layer1.1/conv2/Conv.recipe0.dma_in.onnx::Conv_205",
-      "duration": 4620,
+      "duration": 1164,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -223,7 +223,7 @@
     },
     {
       "action_id": "/layer1/layer1.1/conv2/Conv.recipe0.compute",
-      "duration": 6820,
+      "duration": 6568,
       "is_optional": false,
       "kind": "compute",
       "launch_overhead": 16,
@@ -242,7 +242,7 @@
     },
     {
       "action_id": "fused_add_relu_21.recipe0.compute",
-      "duration": 1522,
+      "duration": 1466,
       "is_optional": false,
       "kind": "compute",
       "launch_overhead": 10,
@@ -261,7 +261,7 @@
     },
     {
       "action_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0.dma_in.onnx::Conv_214",
-      "duration": 1036,
+      "duration": 140,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -279,7 +279,7 @@
     },
     {
       "action_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0.compute",
-      "duration": 688,
+      "duration": 660,
       "is_optional": false,
       "kind": "compute",
       "launch_overhead": 16,
@@ -298,7 +298,7 @@
     },
     {
       "action_id": "fused_conv_relu_7.recipe0.dma_in.onnx::Conv_208",
-      "duration": 9228,
+      "duration": 1164,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -316,7 +316,7 @@
     },
     {
       "action_id": "fused_conv_relu_7.recipe0.compute",
-      "duration": 3796,
+      "duration": 3544,
       "is_optional": false,
       "kind": "compute",
       "launch_overhead": 16,
@@ -335,7 +335,7 @@
     },
     {
       "action_id": "/layer2/layer2.0/conv2/Conv.recipe0.dma_in.onnx::Conv_211",
-      "duration": 18444,
+      "duration": 2316,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -353,7 +353,7 @@
     },
     {
       "action_id": "/layer2/layer2.0/conv2/Conv.recipe0.compute",
-      "duration": 2284,
+      "duration": 2032,
       "is_optional": false,
       "kind": "compute",
       "launch_overhead": 16,
@@ -372,7 +372,7 @@
     },
     {
       "action_id": "fused_add_relu_23.recipe0.compute",
-      "duration": 514,
+      "duration": 458,
       "is_optional": false,
       "kind": "compute",
       "launch_overhead": 10,
@@ -391,7 +391,7 @@
     },
     {
       "action_id": "fused_conv_relu_9.recipe0.dma_in.onnx::Conv_217",
-      "duration": 18444,
+      "duration": 2316,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -409,7 +409,7 @@
     },
     {
       "action_id": "fused_conv_relu_9.recipe0.compute",
-      "duration": 2284,
+      "duration": 2032,
       "is_optional": false,
       "kind": "compute",
       "launch_overhead": 16,
@@ -428,7 +428,7 @@
     },
     {
       "action_id": "/layer2/layer2.1/conv2/Conv.recipe0.dma_in.onnx::Conv_220",
-      "duration": 18444,
+      "duration": 2316,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -446,7 +446,7 @@
     },
     {
       "action_id": "/layer2/layer2.1/conv2/Conv.recipe0.compute",
-      "duration": 2284,
+      "duration": 2032,
       "is_optional": false,
       "kind": "compute",
       "launch_overhead": 16,
@@ -465,7 +465,7 @@
     },
     {
       "action_id": "fused_add_relu_25.recipe0.compute",
-      "duration": 514,
+      "duration": 458,
       "is_optional": false,
       "kind": "compute",
       "launch_overhead": 10,
@@ -484,7 +484,7 @@
     },
     {
       "action_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0.dma_in.onnx::Conv_229",
-      "duration": 4108,
+      "duration": 268,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -521,7 +521,7 @@
     },
     {
       "action_id": "fused_conv_relu_11.recipe0.dma_in.onnx::Conv_223",
-      "duration": 36876,
+      "duration": 2316,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -558,7 +558,7 @@
     },
     {
       "action_id": "/layer3/layer3.0/conv2/Conv.recipe0.dma_in.onnx::Conv_226",
-      "duration": 73740,
+      "duration": 4620,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -614,7 +614,7 @@
     },
     {
       "action_id": "fused_conv_relu_13.recipe0.dma_in.onnx::Conv_232",
-      "duration": 73740,
+      "duration": 4620,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -651,7 +651,7 @@
     },
     {
       "action_id": "/layer3/layer3.1/conv2/Conv.recipe0.dma_in.onnx::Conv_235",
-      "duration": 73740,
+      "duration": 4620,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -707,7 +707,7 @@
     },
     {
       "action_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe0.dma_in.onnx::Conv_244",
-      "duration": 16396,
+      "duration": 524,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -744,7 +744,7 @@
     },
     {
       "action_id": "fused_conv_relu_15.recipe0.dma_in.onnx::Conv_238",
-      "duration": 147468,
+      "duration": 4620,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -781,7 +781,7 @@
     },
     {
       "action_id": "/layer4/layer4.0/conv2/Conv.recipe0.dma_in.onnx::Conv_241",
-      "duration": 294924,
+      "duration": 9228,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -837,7 +837,7 @@
     },
     {
       "action_id": "fused_conv_relu_17.recipe0.dma_in.onnx::Conv_247",
-      "duration": 294924,
+      "duration": 9228,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -874,7 +874,7 @@
     },
     {
       "action_id": "/layer4/layer4.1/conv2/Conv.recipe0.dma_in.onnx::Conv_250",
-      "duration": 294924,
+      "duration": 9228,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -966,7 +966,7 @@
     },
     {
       "action_id": "/fc/Gemm.recipe0.dma_in.fc.weight",
-      "duration": 64012,
+      "duration": 1036,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -984,7 +984,7 @@
     },
     {
       "action_id": "/fc/Gemm.recipe0.dma_in.fc.bias",
-      "duration": 137,
+      "duration": 14,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -1015,14 +1015,14 @@
       "recipe_id": "/fc/Gemm.recipe0",
       "region_id": "/fc/Gemm",
       "resource_kind": "MATMUL",
-      "temp_bytes": 1027024,
+      "temp_bytes": 17440,
       "writes": [
         "output"
       ]
     },
     {
       "action_id": "/fc/Gemm.recipe0.dma_out.output",
-      "duration": 137,
+      "duration": 14,
       "is_optional": false,
       "kind": "dma_out",
       "launch_overhead": 12,
@@ -1040,7 +1040,7 @@
     },
     {
       "action_id": "/relu/Relu_output_0.spill",
-      "duration": 26228,
+      "duration": 24420,
       "is_optional": true,
       "kind": "spill",
       "launch_overhead": 12,
@@ -1058,7 +1058,7 @@
     },
     {
       "action_id": "/relu/Relu_output_0.reload",
-      "duration": 26228,
+      "duration": 24420,
       "is_optional": true,
       "kind": "reload",
       "launch_overhead": 12,
@@ -1076,7 +1076,7 @@
     },
     {
       "action_id": "/maxpool/MaxPool_output_0.spill",
-      "duration": 13468,
+      "duration": 13004,
       "is_optional": true,
       "kind": "spill",
       "launch_overhead": 12,
@@ -1094,7 +1094,7 @@
     },
     {
       "action_id": "/maxpool/MaxPool_output_0.reload",
-      "duration": 13468,
+      "duration": 13004,
       "is_optional": true,
       "kind": "reload",
       "launch_overhead": 12,
@@ -1112,7 +1112,7 @@
     },
     {
       "action_id": "/layer1/layer1.0/relu/Relu_output_0.spill",
-      "duration": 13468,
+      "duration": 13004,
       "is_optional": true,
       "kind": "spill",
       "launch_overhead": 12,
@@ -1130,7 +1130,7 @@
     },
     {
       "action_id": "/layer1/layer1.0/relu/Relu_output_0.reload",
-      "duration": 13468,
+      "duration": 13004,
       "is_optional": true,
       "kind": "reload",
       "launch_overhead": 12,
@@ -1148,7 +1148,7 @@
     },
     {
       "action_id": "/layer1/layer1.0/conv2/Conv_output_0.spill",
-      "duration": 12108,
+      "duration": 11660,
       "is_optional": true,
       "kind": "spill",
       "launch_overhead": 12,
@@ -1166,7 +1166,7 @@
     },
     {
       "action_id": "/layer1/layer1.0/conv2/Conv_output_0.reload",
-      "duration": 12108,
+      "duration": 11660,
       "is_optional": true,
       "kind": "reload",
       "launch_overhead": 12,
@@ -1184,7 +1184,7 @@
     },
     {
       "action_id": "/layer1/layer1.0/relu_1/Relu_output_0.spill",
-      "duration": 13468,
+      "duration": 13004,
       "is_optional": true,
       "kind": "spill",
       "launch_overhead": 12,
@@ -1202,7 +1202,7 @@
     },
     {
       "action_id": "/layer1/layer1.0/relu_1/Relu_output_0.reload",
-      "duration": 13468,
+      "duration": 13004,
       "is_optional": true,
       "kind": "reload",
       "launch_overhead": 12,
@@ -1220,7 +1220,7 @@
     },
     {
       "action_id": "/layer1/layer1.1/relu/Relu_output_0.spill",
-      "duration": 13468,
+      "duration": 13004,
       "is_optional": true,
       "kind": "spill",
       "launch_overhead": 12,
@@ -1238,7 +1238,7 @@
     },
     {
       "action_id": "/layer1/layer1.1/relu/Relu_output_0.reload",
-      "duration": 13468,
+      "duration": 13004,
       "is_optional": true,
       "kind": "reload",
       "launch_overhead": 12,
@@ -1256,7 +1256,7 @@
     },
     {
       "action_id": "/layer1/layer1.1/conv2/Conv_output_0.spill",
-      "duration": 12108,
+      "duration": 11660,
       "is_optional": true,
       "kind": "spill",
       "launch_overhead": 12,
@@ -1274,7 +1274,7 @@
     },
     {
       "action_id": "/layer1/layer1.1/conv2/Conv_output_0.reload",
-      "duration": 12108,
+      "duration": 11660,
       "is_optional": true,
       "kind": "reload",
       "launch_overhead": 12,
@@ -1292,7 +1292,7 @@
     },
     {
       "action_id": "/layer1/layer1.1/relu_1/Relu_output_0.spill",
-      "duration": 20692,
+      "duration": 19812,
       "is_optional": true,
       "kind": "spill",
       "launch_overhead": 12,
@@ -1310,7 +1310,7 @@
     },
     {
       "action_id": "/layer1/layer1.1/relu_1/Relu_output_0.reload",
-      "duration": 20692,
+      "duration": 19812,
       "is_optional": true,
       "kind": "reload",
       "launch_overhead": 12,
@@ -1328,7 +1328,7 @@
     },
     {
       "action_id": "/layer2/layer2.0/downsample/downsample.0/Conv_output_0.spill",
-      "duration": 10764,
+      "duration": 10316,
       "is_optional": true,
       "kind": "spill",
       "launch_overhead": 12,
@@ -1346,7 +1346,7 @@
     },
     {
       "action_id": "/layer2/layer2.0/downsample/downsample.0/Conv_output_0.reload",
-      "duration": 10764,
+      "duration": 10316,
       "is_optional": true,
       "kind": "reload",
       "launch_overhead": 12,
@@ -1364,7 +1364,7 @@
     },
     {
       "action_id": "/layer2/layer2.0/relu/Relu_output_0.spill",
-      "duration": 6732,
+      "duration": 6284,
       "is_optional": true,
       "kind": "spill",
       "launch_overhead": 12,
@@ -1382,7 +1382,7 @@
     },
     {
       "action_id": "/layer2/layer2.0/relu/Relu_output_0.reload",
-      "duration": 6732,
+      "duration": 6284,
       "is_optional": true,
       "kind": "reload",
       "launch_overhead": 12,
@@ -1400,7 +1400,7 @@
     },
     {
       "action_id": "/layer2/layer2.0/conv2/Conv_output_0.spill",
-      "duration": 4044,
+      "duration": 3596,
       "is_optional": true,
       "kind": "spill",
       "launch_overhead": 12,
@@ -1418,7 +1418,7 @@
     },
     {
       "action_id": "/layer2/layer2.0/conv2/Conv_output_0.reload",
-      "duration": 4044,
+      "duration": 3596,
       "is_optional": true,
       "kind": "reload",
       "launch_overhead": 12,
@@ -1436,7 +1436,7 @@
     },
     {
       "action_id": "/layer2/layer2.0/relu_1/Relu_output_0.spill",
-      "duration": 5292,
+      "duration": 4812,
       "is_optional": true,
       "kind": "spill",
       "launch_overhead": 12,
@@ -1454,7 +1454,7 @@
     },
     {
       "action_id": "/layer2/layer2.0/relu_1/Relu_output_0.reload",
-      "duration": 5292,
+      "duration": 4812,
       "is_optional": true,
       "kind": "reload",
       "launch_overhead": 12,
@@ -1472,7 +1472,7 @@
     },
     {
       "action_id": "/layer2/layer2.1/relu/Relu_output_0.spill",
-      "duration": 5292,
+      "duration": 4812,
       "is_optional": true,
       "kind": "spill",
       "launch_overhead": 12,
@@ -1490,7 +1490,7 @@
     },
     {
       "action_id": "/layer2/layer2.1/relu/Relu_output_0.reload",
-      "duration": 5292,
+      "duration": 4812,
       "is_optional": true,
       "kind": "reload",
       "launch_overhead": 12,
@@ -1508,7 +1508,7 @@
     },
     {
       "action_id": "/layer2/layer2.1/conv2/Conv_output_0.spill",
-      "duration": 4044,
+      "duration": 3596,
       "is_optional": true,
       "kind": "spill",
       "launch_overhead": 12,
@@ -1526,7 +1526,7 @@
     },
     {
       "action_id": "/layer2/layer2.1/conv2/Conv_output_0.reload",
-      "duration": 4044,
+      "duration": 3596,
       "is_optional": true,
       "kind": "reload",
       "launch_overhead": 12,
@@ -3961,7 +3961,7 @@
         "fused_conv_relu_1.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 83287,
+        "latency": 79489,
         "launch_overhead": 40
       },
       "layout_spec": {
@@ -3978,14 +3978,14 @@
           "w"
         ],
         "shape": [
-          28,
+          27,
           112
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1044172,
+        "resident_bytes": 952596,
         "scratch_bytes": 9408,
-        "transfer_bytes": 205260
+        "transfer_bytes": 171540
       }
     },
     {
@@ -3993,7 +3993,7 @@
         "/maxpool/MaxPool.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 794,
+        "latency": 738,
         "launch_overhead": 10
       },
       "layout_spec": {
@@ -4009,12 +4009,12 @@
           "w"
         ],
         "shape": [
-          14,
+          13,
           56
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1269504,
+        "resident_bytes": 1196800,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -4025,7 +4025,7 @@
         "fused_conv_relu_3.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 11440,
+        "latency": 7732,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4042,14 +4042,14 @@
           "w"
         ],
         "shape": [
-          27,
+          26,
           56
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1008640,
+        "resident_bytes": 868352,
         "scratch_bytes": 36864,
-        "transfer_bytes": 147456
+        "transfer_bytes": 36864
       }
     },
     {
@@ -4058,7 +4058,7 @@
         "/layer1/layer1.0/conv2/Conv.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 11440,
+        "latency": 7732,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4075,14 +4075,14 @@
           "w"
         ],
         "shape": [
-          27,
+          26,
           56
         ]
       },
       "value_footprint": {
-        "resident_bytes": 965120,
+        "resident_bytes": 825344,
         "scratch_bytes": 36864,
-        "transfer_bytes": 147456
+        "transfer_bytes": 36864
       }
     },
     {
@@ -4090,7 +4090,7 @@
         "fused_add_relu_19.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 1522,
+        "latency": 1466,
         "launch_overhead": 10
       },
       "layout_spec": {
@@ -4106,12 +4106,12 @@
           "w"
         ],
         "shape": [
-          27,
+          26,
           56
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1248256,
+        "resident_bytes": 1204224,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -4122,7 +4122,7 @@
         "fused_conv_relu_5.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 11440,
+        "latency": 7732,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4139,14 +4139,14 @@
           "w"
         ],
         "shape": [
-          27,
+          26,
           56
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1008640,
+        "resident_bytes": 868352,
         "scratch_bytes": 36864,
-        "transfer_bytes": 147456
+        "transfer_bytes": 36864
       }
     },
     {
@@ -4155,7 +4155,7 @@
         "/layer1/layer1.1/conv2/Conv.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 11440,
+        "latency": 7732,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4172,14 +4172,14 @@
           "w"
         ],
         "shape": [
-          27,
+          26,
           56
         ]
       },
       "value_footprint": {
-        "resident_bytes": 965120,
+        "resident_bytes": 825344,
         "scratch_bytes": 36864,
-        "transfer_bytes": 147456
+        "transfer_bytes": 36864
       }
     },
     {
@@ -4187,7 +4187,7 @@
         "fused_add_relu_21.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 1522,
+        "latency": 1466,
         "launch_overhead": 10
       },
       "layout_spec": {
@@ -4203,12 +4203,12 @@
           "w"
         ],
         "shape": [
-          27,
+          26,
           56
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1479424,
+        "resident_bytes": 1422080,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -4219,7 +4219,7 @@
         "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 1724,
+        "latency": 800,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4236,14 +4236,14 @@
           "w"
         ],
         "shape": [
-          24,
+          23,
           28
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1038592,
+        "resident_bytes": 967424,
         "scratch_bytes": 4096,
-        "transfer_bytes": 32768
+        "transfer_bytes": 4096
       }
     },
     {
@@ -4252,7 +4252,7 @@
         "fused_conv_relu_7.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 13024,
+        "latency": 4708,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4269,14 +4269,14 @@
           "w"
         ],
         "shape": [
-          15,
+          14,
           28
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1171712,
+        "resident_bytes": 871168,
         "scratch_bytes": 36864,
-        "transfer_bytes": 294912
+        "transfer_bytes": 36864
       }
     },
     {
@@ -4285,7 +4285,7 @@
         "/layer2/layer2.0/conv2/Conv.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 20728,
+        "latency": 4348,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4302,14 +4302,14 @@
           "w"
         ],
         "shape": [
-          9,
+          8,
           28
         ]
       },
       "value_footprint": {
-        "resident_bytes": 933888,
+        "resident_bytes": 389120,
         "scratch_bytes": 73728,
-        "transfer_bytes": 589824
+        "transfer_bytes": 73728
       }
     },
     {
@@ -4317,7 +4317,7 @@
         "fused_add_relu_23.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 514,
+        "latency": 458,
         "launch_overhead": 10
       },
       "layout_spec": {
@@ -4333,12 +4333,12 @@
           "w"
         ],
         "shape": [
-          9,
+          8,
           28
         ]
       },
       "value_footprint": {
-        "resident_bytes": 642048,
+        "resident_bytes": 598016,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -4349,7 +4349,7 @@
         "fused_conv_relu_9.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 20728,
+        "latency": 4348,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4366,14 +4366,14 @@
           "w"
         ],
         "shape": [
-          9,
+          8,
           28
         ]
       },
       "value_footprint": {
-        "resident_bytes": 927744,
+        "resident_bytes": 380928,
         "scratch_bytes": 73728,
-        "transfer_bytes": 589824
+        "transfer_bytes": 73728
       }
     },
     {
@@ -4382,7 +4382,7 @@
         "/layer2/layer2.1/conv2/Conv.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 20728,
+        "latency": 4348,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4399,14 +4399,14 @@
           "w"
         ],
         "shape": [
-          9,
+          8,
           28
         ]
       },
       "value_footprint": {
-        "resident_bytes": 887808,
+        "resident_bytes": 342016,
         "scratch_bytes": 73728,
-        "transfer_bytes": 589824
+        "transfer_bytes": 73728
       }
     },
     {
@@ -4414,7 +4414,7 @@
         "fused_add_relu_25.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 514,
+        "latency": 458,
         "launch_overhead": 10
       },
       "layout_spec": {
@@ -4430,12 +4430,12 @@
           "w"
         ],
         "shape": [
-          9,
+          8,
           28
         ]
       },
       "value_footprint": {
-        "resident_bytes": 671232,
+        "resident_bytes": 641536,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -4446,7 +4446,7 @@
         "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 4516,
+        "latency": 676,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4468,9 +4468,9 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 705024,
+        "resident_bytes": 582144,
         "scratch_bytes": 8192,
-        "transfer_bytes": 131072
+        "transfer_bytes": 8192
       }
     },
     {
@@ -4479,7 +4479,7 @@
         "fused_conv_relu_11.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 36910,
+        "latency": 2350,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4501,9 +4501,9 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1562112,
+        "resident_bytes": 456192,
         "scratch_bytes": 73728,
-        "transfer_bytes": 1179648
+        "transfer_bytes": 73728
       }
     },
     {
@@ -4512,7 +4512,7 @@
         "/layer3/layer3.0/conv2/Conv.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 73774,
+        "latency": 4654,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4534,9 +4534,9 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 2369536,
+        "resident_bytes": 157696,
         "scratch_bytes": 147456,
-        "transfer_bytes": 2359296
+        "transfer_bytes": 147456
       }
     },
     {
@@ -4576,7 +4576,7 @@
         "fused_conv_relu_13.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 73774,
+        "latency": 4654,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4598,9 +4598,9 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 2377728,
+        "resident_bytes": 165888,
         "scratch_bytes": 147456,
-        "transfer_bytes": 2359296
+        "transfer_bytes": 147456
       }
     },
     {
@@ -4609,7 +4609,7 @@
         "/layer3/layer3.1/conv2/Conv.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 73774,
+        "latency": 4654,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4631,9 +4631,9 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 2369536,
+        "resident_bytes": 157696,
         "scratch_bytes": 147456,
-        "transfer_bytes": 2359296
+        "transfer_bytes": 147456
       }
     },
     {
@@ -4673,7 +4673,7 @@
         "/layer4/layer4.0/downsample/downsample.0/Conv.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 16608,
+        "latency": 736,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4695,9 +4695,9 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 797696,
+        "resident_bytes": 289792,
         "scratch_bytes": 16384,
-        "transfer_bytes": 524288
+        "transfer_bytes": 16384
       }
     },
     {
@@ -4706,7 +4706,7 @@
         "fused_conv_relu_15.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 147520,
+        "latency": 4672,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4728,9 +4728,9 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 4910080,
+        "resident_bytes": 338944,
         "scratch_bytes": 147456,
-        "transfer_bytes": 4718592
+        "transfer_bytes": 147456
       }
     },
     {
@@ -4739,7 +4739,7 @@
         "/layer4/layer4.0/conv2/Conv.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 294976,
+        "latency": 9280,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4761,9 +4761,9 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 9457664,
+        "resident_bytes": 315392,
         "scratch_bytes": 294912,
-        "transfer_bytes": 9437184
+        "transfer_bytes": 294912
       }
     },
     {
@@ -4803,7 +4803,7 @@
         "fused_conv_relu_17.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 294976,
+        "latency": 9280,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4825,9 +4825,9 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 9474048,
+        "resident_bytes": 331776,
         "scratch_bytes": 294912,
-        "transfer_bytes": 9437184
+        "transfer_bytes": 294912
       }
     },
     {
@@ -4836,7 +4836,7 @@
         "/layer4/layer4.1/conv2/Conv.recipe0.compute"
       ],
       "cost_parameters": {
-        "latency": 294976,
+        "latency": 9280,
         "launch_overhead": 28
       },
       "layout_spec": {
@@ -4858,9 +4858,9 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 9457664,
+        "resident_bytes": 315392,
         "scratch_bytes": 294912,
-        "transfer_bytes": 9437184
+        "transfer_bytes": 294912
       }
     },
     {
@@ -4958,7 +4958,7 @@
         "/fc/Gemm.recipe0.dma_out.output"
       ],
       "cost_parameters": {
-        "latency": 66350,
+        "latency": 3128,
         "launch_overhead": 52
       },
       "layout_spec": {
@@ -4978,9 +4978,9 @@
         "shape": []
       },
       "value_footprint": {
-        "resident_bytes": 2058048,
-        "scratch_bytes": 1027024,
-        "transfer_bytes": 2056000
+        "resident_bytes": 34944,
+        "scratch_bytes": 17440,
+        "transfer_bytes": 32896
       }
     }
   ],
@@ -5882,7 +5882,7 @@
       "owner_action_id": "/fc/Gemm.recipe0.compute",
       "owner_residency_id": null,
       "owner_value_id": null,
-      "size_bytes": 1027024
+      "size_bytes": 17440
     }
   ],
   "values": [
@@ -5900,7 +5900,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "input",
-      "size_bytes": 167628,
+      "size_bytes": 162132,
       "spillable": false,
       "value_id": "input"
     },
@@ -5918,7 +5918,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 37632,
+      "size_bytes": 9408,
       "spillable": false,
       "value_id": "onnx::Conv_193"
     },
@@ -5940,8 +5940,8 @@
       "producer": {
         "action_id": "fused_conv_relu_1.recipe0.compute"
       },
-      "required_final_tier": "sram",
-      "size_bytes": 838912,
+      "required_final_tier": "slow",
+      "size_bytes": 781056,
       "spillable": true,
       "value_id": "/relu/Relu_output_0"
     },
@@ -5966,8 +5966,8 @@
       "producer": {
         "action_id": "/maxpool/MaxPool.recipe0.compute"
       },
-      "required_final_tier": "sram",
-      "size_bytes": 430592,
+      "required_final_tier": "slow",
+      "size_bytes": 415744,
       "spillable": true,
       "value_id": "/maxpool/MaxPool_output_0"
     },
@@ -5985,7 +5985,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 147456,
+      "size_bytes": 36864,
       "spillable": false,
       "value_id": "onnx::Conv_196"
     },
@@ -6007,8 +6007,8 @@
       "producer": {
         "action_id": "fused_conv_relu_3.recipe0.compute"
       },
-      "required_final_tier": "sram",
-      "size_bytes": 430592,
+      "required_final_tier": "slow",
+      "size_bytes": 415744,
       "spillable": true,
       "value_id": "/layer1/layer1.0/relu/Relu_output_0"
     },
@@ -6026,7 +6026,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 147456,
+      "size_bytes": 36864,
       "spillable": false,
       "value_id": "onnx::Conv_199"
     },
@@ -6048,8 +6048,8 @@
       "producer": {
         "action_id": "/layer1/layer1.0/conv2/Conv.recipe0.compute"
       },
-      "required_final_tier": "sram",
-      "size_bytes": 387072,
+      "required_final_tier": "slow",
+      "size_bytes": 372736,
       "spillable": true,
       "value_id": "/layer1/layer1.0/conv2/Conv_output_0"
     },
@@ -6074,8 +6074,8 @@
       "producer": {
         "action_id": "fused_add_relu_19.recipe0.compute"
       },
-      "required_final_tier": "sram",
-      "size_bytes": 430592,
+      "required_final_tier": "slow",
+      "size_bytes": 415744,
       "spillable": true,
       "value_id": "/layer1/layer1.0/relu_1/Relu_output_0"
     },
@@ -6093,7 +6093,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 147456,
+      "size_bytes": 36864,
       "spillable": false,
       "value_id": "onnx::Conv_202"
     },
@@ -6115,8 +6115,8 @@
       "producer": {
         "action_id": "fused_conv_relu_5.recipe0.compute"
       },
-      "required_final_tier": "sram",
-      "size_bytes": 430592,
+      "required_final_tier": "slow",
+      "size_bytes": 415744,
       "spillable": true,
       "value_id": "/layer1/layer1.1/relu/Relu_output_0"
     },
@@ -6134,7 +6134,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 147456,
+      "size_bytes": 36864,
       "spillable": false,
       "value_id": "onnx::Conv_205"
     },
@@ -6156,8 +6156,8 @@
       "producer": {
         "action_id": "/layer1/layer1.1/conv2/Conv.recipe0.compute"
       },
-      "required_final_tier": "sram",
-      "size_bytes": 387072,
+      "required_final_tier": "slow",
+      "size_bytes": 372736,
       "spillable": true,
       "value_id": "/layer1/layer1.1/conv2/Conv_output_0"
     },
@@ -6182,8 +6182,8 @@
       "producer": {
         "action_id": "fused_add_relu_21.recipe0.compute"
       },
-      "required_final_tier": "sram",
-      "size_bytes": 661760,
+      "required_final_tier": "slow",
+      "size_bytes": 633600,
       "spillable": true,
       "value_id": "/layer1/layer1.1/relu_1/Relu_output_0"
     },
@@ -6201,7 +6201,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 32768,
+      "size_bytes": 4096,
       "spillable": false,
       "value_id": "onnx::Conv_214"
     },
@@ -6223,8 +6223,8 @@
       "producer": {
         "action_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0.compute"
       },
-      "required_final_tier": "sram",
-      "size_bytes": 344064,
+      "required_final_tier": "slow",
+      "size_bytes": 329728,
       "spillable": true,
       "value_id": "/layer2/layer2.0/downsample/downsample.0/Conv_output_0"
     },
@@ -6242,7 +6242,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 294912,
+      "size_bytes": 36864,
       "spillable": false,
       "value_id": "onnx::Conv_208"
     },
@@ -6264,8 +6264,8 @@
       "producer": {
         "action_id": "fused_conv_relu_7.recipe0.compute"
       },
-      "required_final_tier": "sram",
-      "size_bytes": 215040,
+      "required_final_tier": "slow",
+      "size_bytes": 200704,
       "spillable": true,
       "value_id": "/layer2/layer2.0/relu/Relu_output_0"
     },
@@ -6283,7 +6283,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 589824,
+      "size_bytes": 73728,
       "spillable": false,
       "value_id": "onnx::Conv_211"
     },
@@ -6305,8 +6305,8 @@
       "producer": {
         "action_id": "/layer2/layer2.0/conv2/Conv.recipe0.compute"
       },
-      "required_final_tier": "sram",
-      "size_bytes": 129024,
+      "required_final_tier": "slow",
+      "size_bytes": 114688,
       "spillable": true,
       "value_id": "/layer2/layer2.0/conv2/Conv_output_0"
     },
@@ -6331,8 +6331,8 @@
       "producer": {
         "action_id": "fused_add_relu_23.recipe0.compute"
       },
-      "required_final_tier": "sram",
-      "size_bytes": 168960,
+      "required_final_tier": "slow",
+      "size_bytes": 153600,
       "spillable": true,
       "value_id": "/layer2/layer2.0/relu_1/Relu_output_0"
     },
@@ -6350,7 +6350,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 589824,
+      "size_bytes": 73728,
       "spillable": false,
       "value_id": "onnx::Conv_217"
     },
@@ -6372,8 +6372,8 @@
       "producer": {
         "action_id": "fused_conv_relu_9.recipe0.compute"
       },
-      "required_final_tier": "sram",
-      "size_bytes": 168960,
+      "required_final_tier": "slow",
+      "size_bytes": 153600,
       "spillable": true,
       "value_id": "/layer2/layer2.1/relu/Relu_output_0"
     },
@@ -6391,7 +6391,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 589824,
+      "size_bytes": 73728,
       "spillable": false,
       "value_id": "onnx::Conv_220"
     },
@@ -6413,8 +6413,8 @@
       "producer": {
         "action_id": "/layer2/layer2.1/conv2/Conv.recipe0.compute"
       },
-      "required_final_tier": "sram",
-      "size_bytes": 129024,
+      "required_final_tier": "slow",
+      "size_bytes": 114688,
       "spillable": true,
       "value_id": "/layer2/layer2.1/conv2/Conv_output_0"
     },
@@ -6439,7 +6439,7 @@
       "producer": {
         "action_id": "fused_add_relu_25.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 373248,
       "spillable": true,
       "value_id": "/layer2/layer2.1/relu_1/Relu_output_0"
@@ -6458,7 +6458,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 131072,
+      "size_bytes": 8192,
       "spillable": false,
       "value_id": "onnx::Conv_229"
     },
@@ -6480,7 +6480,7 @@
       "producer": {
         "action_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 200704,
       "spillable": true,
       "value_id": "/layer3/layer3.0/downsample/downsample.0/Conv_output_0"
@@ -6499,7 +6499,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 1179648,
+      "size_bytes": 73728,
       "spillable": false,
       "value_id": "onnx::Conv_223"
     },
@@ -6521,7 +6521,7 @@
       "producer": {
         "action_id": "fused_conv_relu_11.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 9216,
       "spillable": true,
       "value_id": "/layer3/layer3.0/relu/Relu_output_0"
@@ -6540,7 +6540,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 2359296,
+      "size_bytes": 147456,
       "spillable": false,
       "value_id": "onnx::Conv_226"
     },
@@ -6562,7 +6562,7 @@
       "producer": {
         "action_id": "/layer3/layer3.0/conv2/Conv.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 1024,
       "spillable": true,
       "value_id": "/layer3/layer3.0/conv2/Conv_output_0"
@@ -6588,7 +6588,7 @@
       "producer": {
         "action_id": "fused_add_relu_27.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 9216,
       "spillable": true,
       "value_id": "/layer3/layer3.0/relu_1/Relu_output_0"
@@ -6607,7 +6607,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 2359296,
+      "size_bytes": 147456,
       "spillable": false,
       "value_id": "onnx::Conv_232"
     },
@@ -6629,7 +6629,7 @@
       "producer": {
         "action_id": "fused_conv_relu_13.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 9216,
       "spillable": true,
       "value_id": "/layer3/layer3.1/relu/Relu_output_0"
@@ -6648,7 +6648,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 2359296,
+      "size_bytes": 147456,
       "spillable": false,
       "value_id": "onnx::Conv_235"
     },
@@ -6670,7 +6670,7 @@
       "producer": {
         "action_id": "/layer3/layer3.1/conv2/Conv.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 1024,
       "spillable": true,
       "value_id": "/layer3/layer3.1/conv2/Conv_output_0"
@@ -6696,7 +6696,7 @@
       "producer": {
         "action_id": "fused_add_relu_29.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 173056,
       "spillable": true,
       "value_id": "/layer3/layer3.1/relu_1/Relu_output_0"
@@ -6715,7 +6715,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 524288,
+      "size_bytes": 16384,
       "spillable": false,
       "value_id": "onnx::Conv_244"
     },
@@ -6737,7 +6737,7 @@
       "producer": {
         "action_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 100352,
       "spillable": true,
       "value_id": "/layer4/layer4.0/downsample/downsample.0/Conv_output_0"
@@ -6756,7 +6756,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 4718592,
+      "size_bytes": 147456,
       "spillable": false,
       "value_id": "onnx::Conv_238"
     },
@@ -6778,7 +6778,7 @@
       "producer": {
         "action_id": "fused_conv_relu_15.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 18432,
       "spillable": true,
       "value_id": "/layer4/layer4.0/relu/Relu_output_0"
@@ -6797,7 +6797,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 9437184,
+      "size_bytes": 294912,
       "spillable": false,
       "value_id": "onnx::Conv_241"
     },
@@ -6819,7 +6819,7 @@
       "producer": {
         "action_id": "/layer4/layer4.0/conv2/Conv.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 2048,
       "spillable": true,
       "value_id": "/layer4/layer4.0/conv2/Conv_output_0"
@@ -6845,7 +6845,7 @@
       "producer": {
         "action_id": "fused_add_relu_31.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 18432,
       "spillable": true,
       "value_id": "/layer4/layer4.0/relu_1/Relu_output_0"
@@ -6864,7 +6864,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 9437184,
+      "size_bytes": 294912,
       "spillable": false,
       "value_id": "onnx::Conv_247"
     },
@@ -6886,7 +6886,7 @@
       "producer": {
         "action_id": "fused_conv_relu_17.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 18432,
       "spillable": true,
       "value_id": "/layer4/layer4.1/relu/Relu_output_0"
@@ -6905,7 +6905,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 9437184,
+      "size_bytes": 294912,
       "spillable": false,
       "value_id": "onnx::Conv_250"
     },
@@ -6927,7 +6927,7 @@
       "producer": {
         "action_id": "/layer4/layer4.1/conv2/Conv.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 2048,
       "spillable": true,
       "value_id": "/layer4/layer4.1/conv2/Conv_output_0"
@@ -6950,7 +6950,7 @@
       "producer": {
         "action_id": "fused_add_relu_33.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 2048,
       "spillable": true,
       "value_id": "/layer4/layer4.1/relu_1/Relu_output_0"
@@ -6973,7 +6973,7 @@
       "producer": {
         "action_id": "/avgpool/GlobalAveragePool.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 2048,
       "spillable": true,
       "value_id": "/avgpool/GlobalAveragePool_output_0"
@@ -6996,7 +6996,7 @@
       "producer": {
         "action_id": "/Flatten.recipe0.compute"
       },
-      "required_final_tier": "sram",
+      "required_final_tier": "slow",
       "size_bytes": 2048,
       "spillable": true,
       "value_id": "/Flatten_output_0"
@@ -7015,7 +7015,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 2048000,
+      "size_bytes": 32768,
       "spillable": false,
       "value_id": "fc.weight"
     },
@@ -7033,7 +7033,7 @@
       "must_keep": false,
       "producer": null,
       "required_final_tier": "const",
-      "size_bytes": 4000,
+      "size_bytes": 64,
       "spillable": false,
       "value_id": "fc.bias"
     },
@@ -7050,7 +7050,7 @@
         "action_id": "/fc/Gemm.recipe0.compute"
       },
       "required_final_tier": "slow",
-      "size_bytes": 4000,
+      "size_bytes": 64,
       "spillable": false,
       "value_id": "output"
     }
