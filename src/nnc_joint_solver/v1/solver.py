@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from collections.abc import Mapping
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 import math
 
 from nnc_joint_solver.base import JointScheduleSolver
@@ -37,16 +37,18 @@ class _SearchState:
 
 
 class V1JointScheduleSolver(JointScheduleSolver):
-    """Searches recipe combinations and schedules with critical-path priority."""
+    """Searches recipe combinations and refines them with local objective search."""
 
     def __init__(
         self,
         *,
         beam_width: int = 64,
         exhaustive_limit: int = 4096,
+        max_local_passes: int = 4,
     ) -> None:
         self.beam_width = max(int(beam_width), 1)
         self.exhaustive_limit = max(int(exhaustive_limit), 1)
+        self.max_local_passes = max(int(max_local_passes), 0)
 
     def solve(self, problem: JointProblem) -> JointSolution | JointFailure:
         problem_failure = validate_joint_problem(problem)
@@ -76,6 +78,7 @@ class V1JointScheduleSolver(JointScheduleSolver):
             region.region_id: tuple(region.successor_region_ids)
             for region in problem.regions
         }
+        boundary_neighbors = _boundary_neighbor_pairs(problem)
 
         best_assignment: dict[str, str] | None = None
         best_objective = math.inf
@@ -194,7 +197,7 @@ class V1JointScheduleSolver(JointScheduleSolver):
                 "v1 could not find a valid mandatory-action recipe assignment",
             )
 
-        return _solve_assignment_best_effort(
+        result = _solve_assignment_best_effort(
             problem,
             best_assignment,
             diagnostics={
@@ -203,6 +206,17 @@ class V1JointScheduleSolver(JointScheduleSolver):
                 "beam_width": self.beam_width,
                 "evaluated_assignments": evaluated_assignments,
             },
+        )
+        if not isinstance(result, JointSolution):
+            return result
+
+        return _refine_solution_locally(
+            problem,
+            result,
+            recipes_by_region=recipes_by_region,
+            boundary_pairs=boundary_pairs,
+            boundary_neighbors=boundary_neighbors,
+            max_local_passes=self.max_local_passes,
         )
 
 
@@ -290,6 +304,176 @@ def _critical_path_ready_priority_factory(
     return priority
 
 
+def _refine_solution_locally(
+    problem: JointProblem,
+    solution: JointSolution,
+    *,
+    recipes_by_region: Mapping[str, tuple[JointRecipe, ...]],
+    boundary_pairs: Mapping[tuple[str, str], set[tuple[str, str]]],
+    boundary_neighbors: tuple[tuple[str, str], ...],
+    max_local_passes: int,
+) -> JointSolution:
+    if max_local_passes <= 0:
+        return solution
+
+    mutable_regions = tuple(
+        region_id
+        for region_id, region_recipes in recipes_by_region.items()
+        if len(region_recipes) > 1
+    )
+    if not mutable_regions:
+        return solution
+
+    current_solution = solution
+    current_assignment = {
+        item.region_id: item.recipe_id for item in solution.selected_recipes
+    }
+    improvement_count = 0
+    completed_passes = 0
+
+    while completed_passes < max_local_passes:
+        completed_passes += 1
+        next_solution = _best_single_region_improvement(
+            problem,
+            current_solution=current_solution,
+            current_assignment=current_assignment,
+            mutable_regions=mutable_regions,
+            recipes_by_region=recipes_by_region,
+            boundary_pairs=boundary_pairs,
+        )
+        if next_solution is not None:
+            current_solution = next_solution
+            current_assignment = {
+                item.region_id: item.recipe_id for item in current_solution.selected_recipes
+            }
+            improvement_count += 1
+            continue
+
+        next_solution = _best_pair_region_improvement(
+            problem,
+            current_solution=current_solution,
+            current_assignment=current_assignment,
+            boundary_neighbors=boundary_neighbors,
+            recipes_by_region=recipes_by_region,
+            boundary_pairs=boundary_pairs,
+        )
+        if next_solution is None:
+            break
+        current_solution = next_solution
+        current_assignment = {
+            item.region_id: item.recipe_id for item in current_solution.selected_recipes
+        }
+        improvement_count += 1
+
+    if improvement_count == 0:
+        return solution
+
+    diagnostics = dict(current_solution.diagnostics)
+    diagnostics["local_search_passes"] = completed_passes
+    diagnostics["local_search_improvements"] = improvement_count
+    return replace(current_solution, diagnostics=diagnostics)
+
+
+def _best_single_region_improvement(
+    problem: JointProblem,
+    *,
+    current_solution: JointSolution,
+    current_assignment: Mapping[str, str],
+    mutable_regions: tuple[str, ...],
+    recipes_by_region: Mapping[str, tuple[JointRecipe, ...]],
+    boundary_pairs: Mapping[tuple[str, str], set[tuple[str, str]]],
+) -> JointSolution | None:
+    best_result: JointSolution | None = None
+    best_objective = current_solution.objective_value
+
+    for region_id in mutable_regions:
+        selected_without_region = {
+            other_region_id: recipe_id
+            for other_region_id, recipe_id in current_assignment.items()
+            if other_region_id != region_id
+        }
+        for recipe in recipes_by_region[region_id]:
+            if recipe.recipe_id == current_assignment[region_id]:
+                continue
+            if not _is_compatible_with_selected(
+                region_id=region_id,
+                recipe_id=recipe.recipe_id,
+                selected=selected_without_region,
+                boundary_pairs=boundary_pairs,
+            ):
+                continue
+            candidate_assignment = dict(selected_without_region)
+            candidate_assignment[region_id] = recipe.recipe_id
+            result = _evaluate_assignment(problem, candidate_assignment)
+            if (
+                isinstance(result, JointSolution)
+                and result.objective_value < best_objective
+            ):
+                best_result = result
+                best_objective = result.objective_value
+
+    return best_result
+
+
+def _best_pair_region_improvement(
+    problem: JointProblem,
+    *,
+    current_solution: JointSolution,
+    current_assignment: Mapping[str, str],
+    boundary_neighbors: tuple[tuple[str, str], ...],
+    recipes_by_region: Mapping[str, tuple[JointRecipe, ...]],
+    boundary_pairs: Mapping[tuple[str, str], set[tuple[str, str]]],
+) -> JointSolution | None:
+    best_result: JointSolution | None = None
+    best_objective = current_solution.objective_value
+
+    for left_region_id, right_region_id in boundary_neighbors:
+        if (
+            len(recipes_by_region[left_region_id]) <= 1
+            or len(recipes_by_region[right_region_id]) <= 1
+        ):
+            continue
+        selected_without_pair = {
+            region_id: recipe_id
+            for region_id, recipe_id in current_assignment.items()
+            if region_id not in {left_region_id, right_region_id}
+        }
+        for left_recipe in recipes_by_region[left_region_id]:
+            if not _is_compatible_with_selected(
+                region_id=left_region_id,
+                recipe_id=left_recipe.recipe_id,
+                selected=selected_without_pair,
+                boundary_pairs=boundary_pairs,
+            ):
+                continue
+            partial_assignment = dict(selected_without_pair)
+            partial_assignment[left_region_id] = left_recipe.recipe_id
+            for right_recipe in recipes_by_region[right_region_id]:
+                if (
+                    left_recipe.recipe_id == current_assignment[left_region_id]
+                    and right_recipe.recipe_id == current_assignment[right_region_id]
+                ):
+                    continue
+                if not _is_compatible_with_selected(
+                    region_id=right_region_id,
+                    recipe_id=right_recipe.recipe_id,
+                    selected=partial_assignment,
+                    boundary_pairs=boundary_pairs,
+                ):
+                    continue
+                candidate_assignment = dict(partial_assignment)
+                candidate_assignment[right_region_id] = right_recipe.recipe_id
+                result = _evaluate_assignment(problem, candidate_assignment)
+                if (
+                    isinstance(result, JointSolution)
+                    and result.objective_value < best_objective
+                ):
+                    best_result = result
+                    best_objective = result.objective_value
+
+    return best_result
+
+
 def _recipes_by_region(problem: JointProblem) -> dict[str, tuple[JointRecipe, ...]]:
     grouped: dict[str, list[JointRecipe]] = defaultdict(list)
     for recipe in problem.recipes:
@@ -348,6 +532,23 @@ def _compatible_recipe_pairs(
             for pair in boundary.compatible_recipe_pairs
         }
     return boundary_pairs
+
+
+def _boundary_neighbor_pairs(problem: JointProblem) -> tuple[tuple[str, str], ...]:
+    recipe_counts_by_region = _recipes_by_region(problem)
+    return tuple(
+        sorted(
+            {
+                tuple(sorted((boundary.src_region_id, boundary.dst_region_id)))
+                for boundary in problem.boundary_constraints
+                if len(boundary.compatible_recipe_pairs)
+                < (
+                    len(recipe_counts_by_region.get(boundary.src_region_id, ()))
+                    * len(recipe_counts_by_region.get(boundary.dst_region_id, ()))
+                )
+            }
+        )
+    )
 
 
 def _ordered_feasible_recipes(

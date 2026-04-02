@@ -646,6 +646,174 @@ def _multi_recipe_problem_payload() -> dict[str, object]:
     }
 
 
+def _beam_trap_problem_payload() -> dict[str, object]:
+    regions: list[dict[str, object]] = []
+    recipes: list[dict[str, object]] = []
+    values: list[dict[str, object]] = []
+    actions: list[dict[str, object]] = []
+    boundary_constraints: list[dict[str, object]] = []
+    dependency_edges: list[dict[str, object]] = []
+    total_regions = 13
+    unlock_index = 6
+    target_index = 7
+
+    def costs_for(index: int) -> tuple[int, int]:
+        if index == unlock_index:
+            return 10, 100
+        if index == target_index:
+            return 1000, 1
+        return 10, 11
+
+    for index in range(total_regions):
+        region_id = f"region{index}"
+        input_value_id = "input0" if index == 0 else f"value{index - 1}"
+        output_value_id = "output0" if index == total_regions - 1 else f"value{index}"
+        regions.append(
+            {
+                "region_id": region_id,
+                "kind": "single_op",
+                "member_nodes": [region_id],
+                "input_value_ids": [input_value_id],
+                "output_value_ids": [output_value_id],
+                "predecessor_region_ids": [] if index == 0 else [f"region{index - 1}"],
+                "successor_region_ids": [] if index == total_regions - 1 else [f"region{index + 1}"],
+            }
+        )
+        if index == 0:
+            values.append(
+                {
+                    "value_id": "input0",
+                    "size_bytes": 1,
+                    "initial_tier": "sram",
+                    "required_final_tier": "sram",
+                    "must_keep": False,
+                    "spillable": False,
+                    "allows_multiple_sram_windows": False,
+                    "producer": None,
+                    "consumers": [
+                        {"action_id": f"{region_id}.recipe0.compute"},
+                        {"action_id": f"{region_id}.recipe1.compute"},
+                    ],
+                }
+            )
+        values.append(
+            {
+                "value_id": output_value_id,
+                "size_bytes": 1,
+                "initial_tier": "unmaterialized",
+                "required_final_tier": "slow" if index == total_regions - 1 else "sram",
+                "must_keep": False,
+                "spillable": False,
+                "allows_multiple_sram_windows": False,
+                "producer": {"action_id": f"{region_id}.recipe0.compute"},
+                "consumers": []
+                if index == total_regions - 1
+                else [
+                    {"action_id": f"region{index + 1}.recipe0.compute"},
+                    {"action_id": f"region{index + 1}.recipe1.compute"},
+                ],
+            }
+        )
+
+        for recipe_index, cost in enumerate(costs_for(index)):
+            recipe_id = f"{region_id}.recipe{recipe_index}"
+            action_id = f"{recipe_id}.compute"
+            recipes.append(
+                {
+                    "recipe_id": recipe_id,
+                    "region_id": region_id,
+                    "tile_spec": {"axes": ["h"], "shape": [1]},
+                    "layout_spec": {"layout_tags": ["x"]},
+                    "activates_action_ids": [action_id],
+                    "value_footprint": {
+                        "resident_bytes": 1,
+                        "scratch_bytes": 0,
+                        "transfer_bytes": 0,
+                    },
+                    "cost_parameters": {"latency": cost, "launch_overhead": 0},
+                }
+            )
+            actions.append(
+                {
+                    "action_id": action_id,
+                    "kind": "compute",
+                    "resource_kind": "OTHER",
+                    "duration": cost,
+                    "launch_overhead": 0,
+                    "reads": [input_value_id],
+                    "writes": [output_value_id],
+                    "temp_bytes": 0,
+                    "is_optional": False,
+                    "region_id": region_id,
+                    "recipe_id": recipe_id,
+                    "optional_value_id": None,
+                }
+            )
+
+        if index == 0:
+            continue
+
+        previous_region_id = f"region{index - 1}"
+        for previous_recipe_index in (0, 1):
+            for current_recipe_index in (0, 1):
+                dependency_edges.append(
+                    {
+                        "src_action_id": f"{previous_region_id}.recipe{previous_recipe_index}.compute",
+                        "dst_action_id": f"{region_id}.recipe{current_recipe_index}.compute",
+                        "kind": "data",
+                    }
+                )
+
+        if index == target_index:
+            compatible_recipe_pairs = [
+                {
+                    "src_recipe_id": f"{previous_region_id}.recipe0",
+                    "dst_recipe_id": f"{region_id}.recipe0",
+                },
+                {
+                    "src_recipe_id": f"{previous_region_id}.recipe1",
+                    "dst_recipe_id": f"{region_id}.recipe1",
+                },
+            ]
+        else:
+            compatible_recipe_pairs = [
+                {
+                    "src_recipe_id": f"{previous_region_id}.recipe{previous_recipe_index}",
+                    "dst_recipe_id": f"{region_id}.recipe{current_recipe_index}",
+                }
+                for previous_recipe_index in (0, 1)
+                for current_recipe_index in (0, 1)
+            ]
+        boundary_constraints.append(
+            {
+                "boundary_id": f"{previous_region_id}->{region_id}",
+                "src_region_id": previous_region_id,
+                "dst_region_id": region_id,
+                "compatible_recipe_pairs": compatible_recipe_pairs,
+            }
+        )
+
+    return {
+        "schema_version": "joint_tiling_schedule_problem_v1",
+        "regions": regions,
+        "recipes": recipes,
+        "values": values,
+        "actions": actions,
+        "boundary_constraints": boundary_constraints,
+        "dependency_edges": dependency_edges,
+        "resources": [
+            {"resource_kind": "DMA", "slot_count": 1},
+            {"resource_kind": "MATMUL", "slot_count": 1},
+            {"resource_kind": "SHAPE", "slot_count": 1},
+            {"resource_kind": "OTHER", "slot_count": 1},
+        ],
+        "sram_capacity_bytes": 1024,
+        "sram_items": [],
+        "default_alignment_bytes": 16,
+        "objective": "min_makespan",
+    }
+
+
 def test_joint_problem_round_trips_required_sram_fields():
     problem = JointProblem.from_json(_allocatable_problem_payload())
 
@@ -729,6 +897,25 @@ def test_v1_solver_finds_better_recipe_than_v0():
     assert v0_result.objective_value == 21
     assert v1_result.objective_value == 6
     assert validate_joint_solution(problem, v1_result) is None
+
+
+def test_v1_solver_local_search_recovers_boundary_pair_improvement():
+    problem = JointProblem.from_json(_beam_trap_problem_payload())
+
+    trapped_result = V1JointScheduleSolver(max_local_passes=0).solve(problem)
+    improved_result = V1JointScheduleSolver().solve(problem)
+
+    assert isinstance(trapped_result, JointSolution)
+    assert isinstance(improved_result, JointSolution)
+    assert trapped_result.objective_value == 1120
+    assert improved_result.objective_value == 211
+    selected_by_region = {
+        item.region_id: item.recipe_id for item in improved_result.selected_recipes
+    }
+    assert selected_by_region["region6"] == "region6.recipe1"
+    assert selected_by_region["region7"] == "region7.recipe1"
+    assert improved_result.diagnostics["local_search_improvements"] >= 1
+    assert validate_joint_solution(problem, improved_result) is None
 
 
 def test_cli_emits_solution_json_for_valid_problem():
