@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 
@@ -12,11 +13,11 @@ from nnc_joint_solver.ir.joint_tiling_schedule import (
     JointFailureStatus,
     JointProblem,
 )
-from nnc_joint_solver.solver import BaselineJointScheduleSolver
+from nnc_joint_solver.solver import V0JointScheduleSolver, V1JointScheduleSolver
 
 
 def main(argv: list[str] | None = None) -> int:
-    del argv
+    args = _parse_args(argv)
     try:
         payload = json.load(sys.stdin)
     except json.JSONDecodeError as exc:
@@ -39,7 +40,8 @@ def main(argv: list[str] | None = None) -> int:
         json.dump(failure.to_json(), sys.stdout)
         return 0
 
-    result = BaselineJointScheduleSolver().solve(problem)
+    solver = V0JointScheduleSolver() if args.solver_version == "v0" else V1JointScheduleSolver()
+    result = solver.solve(problem)
     json.dump(result.to_json(), sys.stdout)
     return 0
 
@@ -60,3 +62,8 @@ def _failure(
         diagnostics={"reason": reason},
     )
 
+
+def _parse_args(argv: list[str] | None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--solver-version", choices=("v0", "v1"), default="v1")
+    return parser.parse_args(argv)

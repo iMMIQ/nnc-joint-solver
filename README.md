@@ -111,10 +111,17 @@ The exact legality check is implemented in
 `src/nnc_joint_solver/validation.py`, so that file is the normative source for
 accepted and rejected solutions.
 
-## Current Baseline Solver
+## Solver Versions
 
-`BaselineJointScheduleSolver` is intentionally much narrower than the full
-contract problem above. Its current behavior is:
+The repository now keeps versioned algorithms under `src/nnc_joint_solver/`:
+
+- `v0/`: the original deterministic baseline
+- `v1/`: the current default solver
+
+### `v0`
+
+`BaselineJointScheduleSolver` / `V0JointScheduleSolver` is intentionally much
+narrower than the full contract problem above. Its behavior is:
 
 - select the first declared recipe for every region
 - schedule only the mandatory actions induced by those recipe choices
@@ -129,10 +136,19 @@ contract problem above. Its current behavior is:
 - pack fixed and generated SRAM items with a greedy first-fit allocator ordered
   by lifetime start time
 
-So the current baseline solver does **not** search recipe combinations, does
-not insert optional transfer actions, and does not optimize globally over the
-entire contract decision space. It is a deterministic reference implementation
-that returns a valid solution for the no-optional-action subset when one fits.
+So `v0` does **not** search recipe combinations, does not insert optional
+transfer actions, and does not optimize globally over the entire contract
+decision space. It is a deterministic reference implementation that returns a
+valid solution for the no-optional-action subset when one fits.
+
+### `v1`
+
+`V1JointScheduleSolver` is the default CLI solver. Compared with `v0`, it adds:
+
+- recipe search instead of always picking the first recipe per region
+- boundary-aware pruning so incompatible recipe pairs are rejected early
+- critical-path-driven ready-queue ordering for active actions
+- exhaustive evaluation on small recipe spaces and beam search on larger ones
 
 ## CLI
 
@@ -152,6 +168,12 @@ to stdout.
 
 Structured infeasible/error payloads exit `0`. Transport or protocol failures
 exit non-zero.
+
+By default the CLI runs `v1`. To force the old baseline:
+
+```bash
+bin/nnc-joint-solver --solver-version v0
+```
 
 ## Development
 

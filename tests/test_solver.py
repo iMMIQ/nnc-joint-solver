@@ -16,7 +16,10 @@ from nnc_joint_solver.ir.joint_tiling_schedule import (  # noqa: E402
     JointProblem,
     JointSolution,
 )
-from nnc_joint_solver.solver import BaselineJointScheduleSolver  # noqa: E402
+from nnc_joint_solver.solver import (  # noqa: E402
+    BaselineJointScheduleSolver,
+    V1JointScheduleSolver,
+)
 from nnc_joint_solver.validation import (  # noqa: E402
     validate_joint_problem,
     validate_joint_solution,
@@ -515,6 +518,134 @@ def _jit_dma_problem_payload() -> dict[str, object]:
     }
 
 
+def _multi_recipe_problem_payload() -> dict[str, object]:
+    return {
+        "schema_version": "joint_tiling_schedule_problem_v1",
+        "regions": [
+            {
+                "region_id": "region0",
+                "kind": "single_op",
+                "member_nodes": ["region0"],
+                "input_value_ids": ["input0", "weight0"],
+                "output_value_ids": ["output0"],
+                "predecessor_region_ids": [],
+                "successor_region_ids": [],
+            }
+        ],
+        "recipes": [
+            {
+                "recipe_id": "region0.recipe0",
+                "region_id": "region0",
+                "tile_spec": {"axes": ["h", "w"], "shape": [8, 8]},
+                "layout_spec": {"layout_tags": ["nchw"]},
+                "activates_action_ids": ["region0.recipe0.compute"],
+                "value_footprint": {
+                    "resident_bytes": 128,
+                    "scratch_bytes": 0,
+                    "transfer_bytes": 0,
+                },
+                "cost_parameters": {"latency": 21, "launch_overhead": 0},
+            },
+            {
+                "recipe_id": "region0.recipe1",
+                "region_id": "region0",
+                "tile_spec": {"axes": ["h", "w"], "shape": [16, 16]},
+                "layout_spec": {"layout_tags": ["nchw"]},
+                "activates_action_ids": ["region0.recipe1.compute"],
+                "value_footprint": {
+                    "resident_bytes": 128,
+                    "scratch_bytes": 0,
+                    "transfer_bytes": 0,
+                },
+                "cost_parameters": {"latency": 6, "launch_overhead": 0},
+            },
+        ],
+        "values": [
+            {
+                "value_id": "input0",
+                "size_bytes": 64,
+                "initial_tier": "sram",
+                "required_final_tier": "sram",
+                "must_keep": False,
+                "spillable": False,
+                "allows_multiple_sram_windows": False,
+                "producer": None,
+                "consumers": [
+                    {"action_id": "region0.recipe0.compute"},
+                    {"action_id": "region0.recipe1.compute"},
+                ],
+            },
+            {
+                "value_id": "weight0",
+                "size_bytes": 64,
+                "initial_tier": "sram",
+                "required_final_tier": "sram",
+                "must_keep": False,
+                "spillable": False,
+                "allows_multiple_sram_windows": False,
+                "producer": None,
+                "consumers": [
+                    {"action_id": "region0.recipe0.compute"},
+                    {"action_id": "region0.recipe1.compute"},
+                ],
+            },
+            {
+                "value_id": "output0",
+                "size_bytes": 64,
+                "initial_tier": "unmaterialized",
+                "required_final_tier": "slow",
+                "must_keep": False,
+                "spillable": False,
+                "allows_multiple_sram_windows": False,
+                "producer": {"action_id": "region0.recipe0.compute"},
+                "consumers": [],
+            },
+        ],
+        "actions": [
+            {
+                "action_id": "region0.recipe0.compute",
+                "kind": "compute",
+                "resource_kind": "OTHER",
+                "duration": 20,
+                "launch_overhead": 1,
+                "reads": ["input0", "weight0"],
+                "writes": ["output0"],
+                "temp_bytes": 0,
+                "is_optional": False,
+                "region_id": "region0",
+                "recipe_id": "region0.recipe0",
+                "optional_value_id": None,
+            },
+            {
+                "action_id": "region0.recipe1.compute",
+                "kind": "compute",
+                "resource_kind": "OTHER",
+                "duration": 5,
+                "launch_overhead": 1,
+                "reads": ["input0", "weight0"],
+                "writes": ["output0"],
+                "temp_bytes": 0,
+                "is_optional": False,
+                "region_id": "region0",
+                "recipe_id": "region0.recipe1",
+                "optional_value_id": None,
+            },
+        ],
+        "boundary_constraints": [],
+        "dependency_edges": [],
+        "resources": [
+            {"resource_kind": "DMA", "slot_count": 1},
+            {"resource_kind": "MATMUL", "slot_count": 1},
+            {"resource_kind": "SHAPE", "slot_count": 1},
+            {"resource_kind": "OTHER", "slot_count": 1},
+        ],
+        "sram_capacity_bytes": 256,
+        "sram_items": [],
+        "default_alignment_bytes": 16,
+        "objective": "min_makespan",
+    }
+
+
 def test_joint_problem_round_trips_required_sram_fields():
     problem = JointProblem.from_json(_allocatable_problem_payload())
 
@@ -585,6 +716,21 @@ def test_baseline_solver_returns_valid_solution_for_allocatable_problem():
     assert validate_joint_solution(problem, result) is None
 
 
+def test_v1_solver_finds_better_recipe_than_v0():
+    problem = JointProblem.from_json(_multi_recipe_problem_payload())
+
+    v0_result = BaselineJointScheduleSolver().solve(problem)
+    v1_result = V1JointScheduleSolver().solve(problem)
+
+    assert isinstance(v0_result, JointSolution)
+    assert isinstance(v1_result, JointSolution)
+    assert v0_result.selected_recipes[0].recipe_id == "region0.recipe0"
+    assert v1_result.selected_recipes[0].recipe_id == "region0.recipe1"
+    assert v0_result.objective_value == 21
+    assert v1_result.objective_value == 6
+    assert validate_joint_solution(problem, v1_result) is None
+
+
 def test_cli_emits_solution_json_for_valid_problem():
     cli = ROOT / "bin" / "nnc-joint-solver"
     result = subprocess.run(
@@ -598,3 +744,18 @@ def test_cli_emits_solution_json_for_valid_problem():
     assert result.returncode == 0
     payload = json.loads(result.stdout)
     assert payload["schema_version"] == "joint_tiling_schedule_solution_v1"
+
+
+def test_cli_can_run_v0_solver_version():
+    cli = ROOT / "bin" / "nnc-joint-solver"
+    result = subprocess.run(
+        [sys.executable, str(cli), "--solver-version", "v0"],
+        input=json.dumps(_multi_recipe_problem_payload()),
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 0
+    payload = json.loads(result.stdout)
+    assert payload["selected_recipes"][0]["recipe_id"] == "region0.recipe0"
