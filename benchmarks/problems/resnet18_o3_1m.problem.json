@@ -57,7 +57,7 @@
     },
     {
       "action_id": "fused_conv_relu_1.recipe1.dma_in.input",
-      "duration": 5079,
+      "duration": 3877,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -112,7 +112,7 @@
     },
     {
       "action_id": "fused_conv_relu_1.recipe2.dma_in.input",
-      "duration": 5079,
+      "duration": 3840,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -167,7 +167,7 @@
     },
     {
       "action_id": "fused_conv_relu_1.recipe3.dma_in.input",
-      "duration": 5079,
+      "duration": 2932,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -222,7 +222,7 @@
     },
     {
       "action_id": "fused_conv_relu_1.recipe4.dma_in.input",
-      "duration": 5079,
+      "duration": 2846,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -277,7 +277,7 @@
     },
     {
       "action_id": "fused_conv_relu_1.recipe5.dma_in.input",
-      "duration": 5079,
+      "duration": 2623,
       "is_optional": false,
       "kind": "dma_in",
       "launch_overhead": 12,
@@ -4937,861 +4937,183 @@
   ],
   "boundary_constraints": [
     {
-      "boundary_id": "/layer4/layer4.0/downsample/downsample.0/Conv->fused_add_relu_31",
+      "boundary_id": "fused_conv_relu_11->/layer3/layer3.0/conv2/Conv",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "/layer3/layer3.0/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_11.recipe0"
+        }
+      ],
+      "dst_region_id": "/layer3/layer3.0/conv2/Conv",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "fused_conv_relu_11"
+    },
+    {
+      "boundary_id": "/layer1/layer1.0/conv2/Conv->fused_add_relu_19",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe0",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe1",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe2",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe3",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe4",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe5",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe0",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe1",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe2",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe3",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe4",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe5",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe0",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe1",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe2",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe3",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe4",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe5",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe0",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe1",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe2",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe3",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe4",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe5",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe0",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe1",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe2",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe3",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe4",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe5",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe0",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe1",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe2",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe3",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe4",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe5",
+          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5"
+        }
+      ],
+      "dst_region_id": "fused_add_relu_19",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "/layer1/layer1.0/conv2/Conv"
+    },
+    {
+      "boundary_id": "/layer4/layer4.0/conv2/Conv->fused_add_relu_31",
       "compatible_recipe_pairs": [
         {
           "dst_recipe_id": "fused_add_relu_31.recipe0",
-          "src_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_31.recipe0",
-          "src_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_31.recipe0",
-          "src_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_31.recipe0",
-          "src_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_31.recipe0",
-          "src_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_31.recipe0",
-          "src_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe5"
+          "src_recipe_id": "/layer4/layer4.0/conv2/Conv.recipe0"
         }
       ],
       "dst_region_id": "fused_add_relu_31",
       "required_layout_relations": [],
       "required_tile_domain_relations": [],
-      "src_region_id": "/layer4/layer4.0/downsample/downsample.0/Conv"
-    },
-    {
-      "boundary_id": "fused_conv_relu_9->/layer2/layer2.1/conv2/Conv",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_9.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_9.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_9.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_9.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_9.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_9.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_9.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_9.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_9.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_9.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_9.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_9.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_9.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_9.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_9.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_9.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_9.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_9.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_9.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_9.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_9.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_9.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_9.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_9.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_9.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_9.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_9.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_9.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_9.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_9.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_9.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_9.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_9.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_9.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_9.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_9.recipe5"
-        }
-      ],
-      "dst_region_id": "/layer2/layer2.1/conv2/Conv",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "fused_conv_relu_9"
-    },
-    {
-      "boundary_id": "fused_add_relu_33->/avgpool/GlobalAveragePool",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "/avgpool/GlobalAveragePool.recipe0",
-          "src_recipe_id": "fused_add_relu_33.recipe0"
-        }
-      ],
-      "dst_region_id": "/avgpool/GlobalAveragePool",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "fused_add_relu_33"
-    },
-    {
-      "boundary_id": "/layer2/layer2.0/downsample/downsample.0/Conv->fused_add_relu_23",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe0",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe1",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe2",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe3",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe4",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe5",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe0",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe1",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe2",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe3",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe4",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe5",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe0",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe1",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe2",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe3",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe4",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe5",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe0",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe1",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe2",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe3",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe4",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe5",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe0",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe1",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe2",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe3",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe4",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe5",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe0",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe1",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe2",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe3",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe4",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe5",
-          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5"
-        }
-      ],
-      "dst_region_id": "fused_add_relu_23",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "/layer2/layer2.0/downsample/downsample.0/Conv"
-    },
-    {
-      "boundary_id": "fused_add_relu_25->/layer3/layer3.0/downsample/downsample.0/Conv",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0",
-          "src_recipe_id": "fused_add_relu_25.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe1",
-          "src_recipe_id": "fused_add_relu_25.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe2",
-          "src_recipe_id": "fused_add_relu_25.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe3",
-          "src_recipe_id": "fused_add_relu_25.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe4",
-          "src_recipe_id": "fused_add_relu_25.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe5",
-          "src_recipe_id": "fused_add_relu_25.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0",
-          "src_recipe_id": "fused_add_relu_25.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe1",
-          "src_recipe_id": "fused_add_relu_25.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe2",
-          "src_recipe_id": "fused_add_relu_25.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe3",
-          "src_recipe_id": "fused_add_relu_25.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe4",
-          "src_recipe_id": "fused_add_relu_25.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe5",
-          "src_recipe_id": "fused_add_relu_25.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0",
-          "src_recipe_id": "fused_add_relu_25.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe1",
-          "src_recipe_id": "fused_add_relu_25.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe2",
-          "src_recipe_id": "fused_add_relu_25.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe3",
-          "src_recipe_id": "fused_add_relu_25.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe4",
-          "src_recipe_id": "fused_add_relu_25.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe5",
-          "src_recipe_id": "fused_add_relu_25.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0",
-          "src_recipe_id": "fused_add_relu_25.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe1",
-          "src_recipe_id": "fused_add_relu_25.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe2",
-          "src_recipe_id": "fused_add_relu_25.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe3",
-          "src_recipe_id": "fused_add_relu_25.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe4",
-          "src_recipe_id": "fused_add_relu_25.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe5",
-          "src_recipe_id": "fused_add_relu_25.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0",
-          "src_recipe_id": "fused_add_relu_25.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe1",
-          "src_recipe_id": "fused_add_relu_25.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe2",
-          "src_recipe_id": "fused_add_relu_25.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe3",
-          "src_recipe_id": "fused_add_relu_25.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe4",
-          "src_recipe_id": "fused_add_relu_25.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe5",
-          "src_recipe_id": "fused_add_relu_25.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0",
-          "src_recipe_id": "fused_add_relu_25.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe1",
-          "src_recipe_id": "fused_add_relu_25.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe2",
-          "src_recipe_id": "fused_add_relu_25.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe3",
-          "src_recipe_id": "fused_add_relu_25.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe4",
-          "src_recipe_id": "fused_add_relu_25.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe5",
-          "src_recipe_id": "fused_add_relu_25.recipe5"
-        }
-      ],
-      "dst_region_id": "/layer3/layer3.0/downsample/downsample.0/Conv",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "fused_add_relu_25"
-    },
-    {
-      "boundary_id": "fused_add_relu_25->fused_conv_relu_11",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "fused_conv_relu_11.recipe0",
-          "src_recipe_id": "fused_add_relu_25.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_11.recipe0",
-          "src_recipe_id": "fused_add_relu_25.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_11.recipe0",
-          "src_recipe_id": "fused_add_relu_25.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_11.recipe0",
-          "src_recipe_id": "fused_add_relu_25.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_11.recipe0",
-          "src_recipe_id": "fused_add_relu_25.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_11.recipe0",
-          "src_recipe_id": "fused_add_relu_25.recipe5"
-        }
-      ],
-      "dst_region_id": "fused_conv_relu_11",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "fused_add_relu_25"
-    },
-    {
-      "boundary_id": "/layer4/layer4.1/conv2/Conv->fused_add_relu_33",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "fused_add_relu_33.recipe0",
-          "src_recipe_id": "/layer4/layer4.1/conv2/Conv.recipe0"
-        }
-      ],
-      "dst_region_id": "fused_add_relu_33",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "/layer4/layer4.1/conv2/Conv"
-    },
-    {
-      "boundary_id": "fused_add_relu_21->/layer2/layer2.0/downsample/downsample.0/Conv",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0",
-          "src_recipe_id": "fused_add_relu_21.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1",
-          "src_recipe_id": "fused_add_relu_21.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2",
-          "src_recipe_id": "fused_add_relu_21.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3",
-          "src_recipe_id": "fused_add_relu_21.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4",
-          "src_recipe_id": "fused_add_relu_21.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5",
-          "src_recipe_id": "fused_add_relu_21.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0",
-          "src_recipe_id": "fused_add_relu_21.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1",
-          "src_recipe_id": "fused_add_relu_21.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2",
-          "src_recipe_id": "fused_add_relu_21.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3",
-          "src_recipe_id": "fused_add_relu_21.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4",
-          "src_recipe_id": "fused_add_relu_21.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5",
-          "src_recipe_id": "fused_add_relu_21.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0",
-          "src_recipe_id": "fused_add_relu_21.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1",
-          "src_recipe_id": "fused_add_relu_21.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2",
-          "src_recipe_id": "fused_add_relu_21.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3",
-          "src_recipe_id": "fused_add_relu_21.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4",
-          "src_recipe_id": "fused_add_relu_21.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5",
-          "src_recipe_id": "fused_add_relu_21.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0",
-          "src_recipe_id": "fused_add_relu_21.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1",
-          "src_recipe_id": "fused_add_relu_21.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2",
-          "src_recipe_id": "fused_add_relu_21.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3",
-          "src_recipe_id": "fused_add_relu_21.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4",
-          "src_recipe_id": "fused_add_relu_21.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5",
-          "src_recipe_id": "fused_add_relu_21.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0",
-          "src_recipe_id": "fused_add_relu_21.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1",
-          "src_recipe_id": "fused_add_relu_21.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2",
-          "src_recipe_id": "fused_add_relu_21.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3",
-          "src_recipe_id": "fused_add_relu_21.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4",
-          "src_recipe_id": "fused_add_relu_21.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5",
-          "src_recipe_id": "fused_add_relu_21.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0",
-          "src_recipe_id": "fused_add_relu_21.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1",
-          "src_recipe_id": "fused_add_relu_21.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2",
-          "src_recipe_id": "fused_add_relu_21.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3",
-          "src_recipe_id": "fused_add_relu_21.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4",
-          "src_recipe_id": "fused_add_relu_21.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5",
-          "src_recipe_id": "fused_add_relu_21.recipe5"
-        }
-      ],
-      "dst_region_id": "/layer2/layer2.0/downsample/downsample.0/Conv",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "fused_add_relu_21"
-    },
-    {
-      "boundary_id": "fused_add_relu_21->fused_conv_relu_7",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe0",
-          "src_recipe_id": "fused_add_relu_21.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe1",
-          "src_recipe_id": "fused_add_relu_21.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe2",
-          "src_recipe_id": "fused_add_relu_21.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe3",
-          "src_recipe_id": "fused_add_relu_21.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe4",
-          "src_recipe_id": "fused_add_relu_21.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe5",
-          "src_recipe_id": "fused_add_relu_21.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe0",
-          "src_recipe_id": "fused_add_relu_21.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe1",
-          "src_recipe_id": "fused_add_relu_21.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe2",
-          "src_recipe_id": "fused_add_relu_21.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe3",
-          "src_recipe_id": "fused_add_relu_21.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe4",
-          "src_recipe_id": "fused_add_relu_21.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe5",
-          "src_recipe_id": "fused_add_relu_21.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe0",
-          "src_recipe_id": "fused_add_relu_21.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe1",
-          "src_recipe_id": "fused_add_relu_21.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe2",
-          "src_recipe_id": "fused_add_relu_21.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe3",
-          "src_recipe_id": "fused_add_relu_21.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe4",
-          "src_recipe_id": "fused_add_relu_21.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe5",
-          "src_recipe_id": "fused_add_relu_21.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe0",
-          "src_recipe_id": "fused_add_relu_21.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe1",
-          "src_recipe_id": "fused_add_relu_21.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe2",
-          "src_recipe_id": "fused_add_relu_21.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe3",
-          "src_recipe_id": "fused_add_relu_21.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe4",
-          "src_recipe_id": "fused_add_relu_21.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe5",
-          "src_recipe_id": "fused_add_relu_21.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe0",
-          "src_recipe_id": "fused_add_relu_21.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe1",
-          "src_recipe_id": "fused_add_relu_21.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe2",
-          "src_recipe_id": "fused_add_relu_21.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe3",
-          "src_recipe_id": "fused_add_relu_21.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe4",
-          "src_recipe_id": "fused_add_relu_21.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe5",
-          "src_recipe_id": "fused_add_relu_21.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe0",
-          "src_recipe_id": "fused_add_relu_21.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe1",
-          "src_recipe_id": "fused_add_relu_21.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe2",
-          "src_recipe_id": "fused_add_relu_21.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe3",
-          "src_recipe_id": "fused_add_relu_21.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe4",
-          "src_recipe_id": "fused_add_relu_21.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_7.recipe5",
-          "src_recipe_id": "fused_add_relu_21.recipe5"
-        }
-      ],
-      "dst_region_id": "fused_conv_relu_7",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "fused_add_relu_21"
+      "src_region_id": "/layer4/layer4.0/conv2/Conv"
     },
     {
       "boundary_id": "/layer1/layer1.1/conv2/Conv->fused_add_relu_21",
@@ -5973,63 +5295,310 @@
       "src_region_id": "fused_add_relu_31"
     },
     {
-      "boundary_id": "/Flatten->/fc/Gemm",
+      "boundary_id": "fused_conv_relu_7->/layer2/layer2.0/conv2/Conv",
       "compatible_recipe_pairs": [
         {
-          "dst_recipe_id": "/fc/Gemm.recipe0",
-          "src_recipe_id": "/Flatten.recipe0"
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_7.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_7.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_7.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_7.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_7.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_7.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_7.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_7.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_7.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_7.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_7.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_7.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_7.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_7.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_7.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_7.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_7.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_7.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_7.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_7.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_7.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_7.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_7.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_7.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_7.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_7.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_7.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_7.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_7.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_7.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_7.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_7.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_7.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_7.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_7.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_7.recipe5"
         }
       ],
-      "dst_region_id": "/fc/Gemm",
+      "dst_region_id": "/layer2/layer2.0/conv2/Conv",
       "required_layout_relations": [],
       "required_tile_domain_relations": [],
-      "src_region_id": "/Flatten"
+      "src_region_id": "fused_conv_relu_7"
     },
     {
-      "boundary_id": "fused_conv_relu_13->/layer3/layer3.1/conv2/Conv",
+      "boundary_id": "/layer2/layer2.0/downsample/downsample.0/Conv->fused_add_relu_23",
       "compatible_recipe_pairs": [
         {
-          "dst_recipe_id": "/layer3/layer3.1/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_13.recipe0"
+          "dst_recipe_id": "fused_add_relu_23.recipe0",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe1",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe2",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe3",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe4",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe5",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe0",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe1",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe2",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe3",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe4",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe5",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe0",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe1",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe2",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe3",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe4",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe5",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe0",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe1",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe2",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe3",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe4",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe5",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe0",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe1",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe2",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe3",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe4",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe5",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe0",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe1",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe2",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe3",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe4",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe5",
+          "src_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5"
         }
       ],
-      "dst_region_id": "/layer3/layer3.1/conv2/Conv",
+      "dst_region_id": "fused_add_relu_23",
       "required_layout_relations": [],
       "required_tile_domain_relations": [],
-      "src_region_id": "fused_conv_relu_13"
-    },
-    {
-      "boundary_id": "/layer3/layer3.0/downsample/downsample.0/Conv->fused_add_relu_27",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "fused_add_relu_27.recipe0",
-          "src_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_27.recipe0",
-          "src_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_27.recipe0",
-          "src_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_27.recipe0",
-          "src_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_27.recipe0",
-          "src_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_27.recipe0",
-          "src_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe5"
-        }
-      ],
-      "dst_region_id": "fused_add_relu_27",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "/layer3/layer3.0/downsample/downsample.0/Conv"
+      "src_region_id": "/layer2/layer2.0/downsample/downsample.0/Conv"
     },
     {
       "boundary_id": "fused_conv_relu_5->/layer1/layer1.1/conv2/Conv",
@@ -6185,707 +5754,323 @@
       "src_region_id": "fused_conv_relu_5"
     },
     {
-      "boundary_id": "/layer4/layer4.0/conv2/Conv->fused_add_relu_31",
+      "boundary_id": "fused_add_relu_21->fused_conv_relu_7",
       "compatible_recipe_pairs": [
         {
-          "dst_recipe_id": "fused_add_relu_31.recipe0",
-          "src_recipe_id": "/layer4/layer4.0/conv2/Conv.recipe0"
+          "dst_recipe_id": "fused_conv_relu_7.recipe0",
+          "src_recipe_id": "fused_add_relu_21.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe1",
+          "src_recipe_id": "fused_add_relu_21.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe2",
+          "src_recipe_id": "fused_add_relu_21.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe3",
+          "src_recipe_id": "fused_add_relu_21.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe4",
+          "src_recipe_id": "fused_add_relu_21.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe5",
+          "src_recipe_id": "fused_add_relu_21.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe0",
+          "src_recipe_id": "fused_add_relu_21.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe1",
+          "src_recipe_id": "fused_add_relu_21.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe2",
+          "src_recipe_id": "fused_add_relu_21.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe3",
+          "src_recipe_id": "fused_add_relu_21.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe4",
+          "src_recipe_id": "fused_add_relu_21.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe5",
+          "src_recipe_id": "fused_add_relu_21.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe0",
+          "src_recipe_id": "fused_add_relu_21.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe1",
+          "src_recipe_id": "fused_add_relu_21.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe2",
+          "src_recipe_id": "fused_add_relu_21.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe3",
+          "src_recipe_id": "fused_add_relu_21.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe4",
+          "src_recipe_id": "fused_add_relu_21.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe5",
+          "src_recipe_id": "fused_add_relu_21.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe0",
+          "src_recipe_id": "fused_add_relu_21.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe1",
+          "src_recipe_id": "fused_add_relu_21.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe2",
+          "src_recipe_id": "fused_add_relu_21.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe3",
+          "src_recipe_id": "fused_add_relu_21.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe4",
+          "src_recipe_id": "fused_add_relu_21.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe5",
+          "src_recipe_id": "fused_add_relu_21.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe0",
+          "src_recipe_id": "fused_add_relu_21.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe1",
+          "src_recipe_id": "fused_add_relu_21.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe2",
+          "src_recipe_id": "fused_add_relu_21.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe3",
+          "src_recipe_id": "fused_add_relu_21.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe4",
+          "src_recipe_id": "fused_add_relu_21.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe5",
+          "src_recipe_id": "fused_add_relu_21.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe0",
+          "src_recipe_id": "fused_add_relu_21.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe1",
+          "src_recipe_id": "fused_add_relu_21.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe2",
+          "src_recipe_id": "fused_add_relu_21.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe3",
+          "src_recipe_id": "fused_add_relu_21.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe4",
+          "src_recipe_id": "fused_add_relu_21.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_7.recipe5",
+          "src_recipe_id": "fused_add_relu_21.recipe5"
         }
       ],
-      "dst_region_id": "fused_add_relu_31",
+      "dst_region_id": "fused_conv_relu_7",
       "required_layout_relations": [],
       "required_tile_domain_relations": [],
-      "src_region_id": "/layer4/layer4.0/conv2/Conv"
+      "src_region_id": "fused_add_relu_21"
     },
     {
-      "boundary_id": "/layer3/layer3.1/conv2/Conv->fused_add_relu_29",
+      "boundary_id": "fused_add_relu_21->/layer2/layer2.0/downsample/downsample.0/Conv",
       "compatible_recipe_pairs": [
         {
-          "dst_recipe_id": "fused_add_relu_29.recipe0",
-          "src_recipe_id": "/layer3/layer3.1/conv2/Conv.recipe0"
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0",
+          "src_recipe_id": "fused_add_relu_21.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1",
+          "src_recipe_id": "fused_add_relu_21.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2",
+          "src_recipe_id": "fused_add_relu_21.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3",
+          "src_recipe_id": "fused_add_relu_21.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4",
+          "src_recipe_id": "fused_add_relu_21.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5",
+          "src_recipe_id": "fused_add_relu_21.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0",
+          "src_recipe_id": "fused_add_relu_21.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1",
+          "src_recipe_id": "fused_add_relu_21.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2",
+          "src_recipe_id": "fused_add_relu_21.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3",
+          "src_recipe_id": "fused_add_relu_21.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4",
+          "src_recipe_id": "fused_add_relu_21.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5",
+          "src_recipe_id": "fused_add_relu_21.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0",
+          "src_recipe_id": "fused_add_relu_21.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1",
+          "src_recipe_id": "fused_add_relu_21.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2",
+          "src_recipe_id": "fused_add_relu_21.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3",
+          "src_recipe_id": "fused_add_relu_21.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4",
+          "src_recipe_id": "fused_add_relu_21.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5",
+          "src_recipe_id": "fused_add_relu_21.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0",
+          "src_recipe_id": "fused_add_relu_21.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1",
+          "src_recipe_id": "fused_add_relu_21.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2",
+          "src_recipe_id": "fused_add_relu_21.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3",
+          "src_recipe_id": "fused_add_relu_21.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4",
+          "src_recipe_id": "fused_add_relu_21.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5",
+          "src_recipe_id": "fused_add_relu_21.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0",
+          "src_recipe_id": "fused_add_relu_21.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1",
+          "src_recipe_id": "fused_add_relu_21.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2",
+          "src_recipe_id": "fused_add_relu_21.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3",
+          "src_recipe_id": "fused_add_relu_21.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4",
+          "src_recipe_id": "fused_add_relu_21.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5",
+          "src_recipe_id": "fused_add_relu_21.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe0",
+          "src_recipe_id": "fused_add_relu_21.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe1",
+          "src_recipe_id": "fused_add_relu_21.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe2",
+          "src_recipe_id": "fused_add_relu_21.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe3",
+          "src_recipe_id": "fused_add_relu_21.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe4",
+          "src_recipe_id": "fused_add_relu_21.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.0/downsample/downsample.0/Conv.recipe5",
+          "src_recipe_id": "fused_add_relu_21.recipe5"
         }
       ],
-      "dst_region_id": "fused_add_relu_29",
+      "dst_region_id": "/layer2/layer2.0/downsample/downsample.0/Conv",
       "required_layout_relations": [],
       "required_tile_domain_relations": [],
-      "src_region_id": "/layer3/layer3.1/conv2/Conv"
+      "src_region_id": "fused_add_relu_21"
     },
     {
-      "boundary_id": "/layer1/layer1.0/conv2/Conv->fused_add_relu_19",
+      "boundary_id": "/Flatten->/fc/Gemm",
       "compatible_recipe_pairs": [
         {
-          "dst_recipe_id": "fused_add_relu_19.recipe0",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe1",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe2",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe3",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe4",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe5",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe0",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe1",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe2",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe3",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe4",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe5",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe0",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe1",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe2",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe3",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe4",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe5",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe0",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe1",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe2",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe3",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe4",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe5",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe0",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe1",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe2",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe3",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe4",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe5",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe0",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe1",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe2",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe3",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe4",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe5",
-          "src_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5"
+          "dst_recipe_id": "/fc/Gemm.recipe0",
+          "src_recipe_id": "/Flatten.recipe0"
         }
       ],
-      "dst_region_id": "fused_add_relu_19",
+      "dst_region_id": "/fc/Gemm",
       "required_layout_relations": [],
       "required_tile_domain_relations": [],
-      "src_region_id": "/layer1/layer1.0/conv2/Conv"
-    },
-    {
-      "boundary_id": "fused_conv_relu_11->/layer3/layer3.0/conv2/Conv",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "/layer3/layer3.0/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_11.recipe0"
-        }
-      ],
-      "dst_region_id": "/layer3/layer3.0/conv2/Conv",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "fused_conv_relu_11"
-    },
-    {
-      "boundary_id": "/avgpool/GlobalAveragePool->/Flatten",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "/Flatten.recipe0",
-          "src_recipe_id": "/avgpool/GlobalAveragePool.recipe0"
-        }
-      ],
-      "dst_region_id": "/Flatten",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "/avgpool/GlobalAveragePool"
-    },
-    {
-      "boundary_id": "/layer2/layer2.0/conv2/Conv->fused_add_relu_23",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe0",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe1",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe2",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe3",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe4",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe5",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe0",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe1",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe2",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe3",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe4",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe5",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe0",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe1",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe2",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe3",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe4",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe5",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe0",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe1",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe2",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe3",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe4",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe5",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe0",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe1",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe2",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe3",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe4",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe5",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe0",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe1",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe2",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe3",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe4",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_23.recipe5",
-          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5"
-        }
-      ],
-      "dst_region_id": "fused_add_relu_23",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "/layer2/layer2.0/conv2/Conv"
-    },
-    {
-      "boundary_id": "fused_conv_relu_17->/layer4/layer4.1/conv2/Conv",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "/layer4/layer4.1/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_17.recipe0"
-        }
-      ],
-      "dst_region_id": "/layer4/layer4.1/conv2/Conv",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "fused_conv_relu_17"
-    },
-    {
-      "boundary_id": "fused_add_relu_27->fused_conv_relu_13",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "fused_conv_relu_13.recipe0",
-          "src_recipe_id": "fused_add_relu_27.recipe0"
-        }
-      ],
-      "dst_region_id": "fused_conv_relu_13",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "fused_add_relu_27"
-    },
-    {
-      "boundary_id": "fused_add_relu_27->fused_add_relu_29",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "fused_add_relu_29.recipe0",
-          "src_recipe_id": "fused_add_relu_27.recipe0"
-        }
-      ],
-      "dst_region_id": "fused_add_relu_29",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "fused_add_relu_27"
-    },
-    {
-      "boundary_id": "/maxpool/MaxPool->fused_add_relu_19",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe0",
-          "src_recipe_id": "/maxpool/MaxPool.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe1",
-          "src_recipe_id": "/maxpool/MaxPool.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe2",
-          "src_recipe_id": "/maxpool/MaxPool.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe3",
-          "src_recipe_id": "/maxpool/MaxPool.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe4",
-          "src_recipe_id": "/maxpool/MaxPool.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe5",
-          "src_recipe_id": "/maxpool/MaxPool.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe0",
-          "src_recipe_id": "/maxpool/MaxPool.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe1",
-          "src_recipe_id": "/maxpool/MaxPool.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe2",
-          "src_recipe_id": "/maxpool/MaxPool.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe3",
-          "src_recipe_id": "/maxpool/MaxPool.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe4",
-          "src_recipe_id": "/maxpool/MaxPool.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe5",
-          "src_recipe_id": "/maxpool/MaxPool.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe0",
-          "src_recipe_id": "/maxpool/MaxPool.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe1",
-          "src_recipe_id": "/maxpool/MaxPool.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe2",
-          "src_recipe_id": "/maxpool/MaxPool.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe3",
-          "src_recipe_id": "/maxpool/MaxPool.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe4",
-          "src_recipe_id": "/maxpool/MaxPool.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe5",
-          "src_recipe_id": "/maxpool/MaxPool.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe0",
-          "src_recipe_id": "/maxpool/MaxPool.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe1",
-          "src_recipe_id": "/maxpool/MaxPool.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe2",
-          "src_recipe_id": "/maxpool/MaxPool.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe3",
-          "src_recipe_id": "/maxpool/MaxPool.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe4",
-          "src_recipe_id": "/maxpool/MaxPool.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe5",
-          "src_recipe_id": "/maxpool/MaxPool.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe0",
-          "src_recipe_id": "/maxpool/MaxPool.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe1",
-          "src_recipe_id": "/maxpool/MaxPool.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe2",
-          "src_recipe_id": "/maxpool/MaxPool.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe3",
-          "src_recipe_id": "/maxpool/MaxPool.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe4",
-          "src_recipe_id": "/maxpool/MaxPool.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe5",
-          "src_recipe_id": "/maxpool/MaxPool.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe0",
-          "src_recipe_id": "/maxpool/MaxPool.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe1",
-          "src_recipe_id": "/maxpool/MaxPool.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe2",
-          "src_recipe_id": "/maxpool/MaxPool.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe3",
-          "src_recipe_id": "/maxpool/MaxPool.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe4",
-          "src_recipe_id": "/maxpool/MaxPool.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_19.recipe5",
-          "src_recipe_id": "/maxpool/MaxPool.recipe5"
-        }
-      ],
-      "dst_region_id": "fused_add_relu_19",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "/maxpool/MaxPool"
-    },
-    {
-      "boundary_id": "/maxpool/MaxPool->fused_conv_relu_3",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe0",
-          "src_recipe_id": "/maxpool/MaxPool.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe1",
-          "src_recipe_id": "/maxpool/MaxPool.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe2",
-          "src_recipe_id": "/maxpool/MaxPool.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe3",
-          "src_recipe_id": "/maxpool/MaxPool.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe4",
-          "src_recipe_id": "/maxpool/MaxPool.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe5",
-          "src_recipe_id": "/maxpool/MaxPool.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe0",
-          "src_recipe_id": "/maxpool/MaxPool.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe1",
-          "src_recipe_id": "/maxpool/MaxPool.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe2",
-          "src_recipe_id": "/maxpool/MaxPool.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe3",
-          "src_recipe_id": "/maxpool/MaxPool.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe4",
-          "src_recipe_id": "/maxpool/MaxPool.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe5",
-          "src_recipe_id": "/maxpool/MaxPool.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe0",
-          "src_recipe_id": "/maxpool/MaxPool.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe1",
-          "src_recipe_id": "/maxpool/MaxPool.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe2",
-          "src_recipe_id": "/maxpool/MaxPool.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe3",
-          "src_recipe_id": "/maxpool/MaxPool.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe4",
-          "src_recipe_id": "/maxpool/MaxPool.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe5",
-          "src_recipe_id": "/maxpool/MaxPool.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe0",
-          "src_recipe_id": "/maxpool/MaxPool.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe1",
-          "src_recipe_id": "/maxpool/MaxPool.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe2",
-          "src_recipe_id": "/maxpool/MaxPool.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe3",
-          "src_recipe_id": "/maxpool/MaxPool.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe4",
-          "src_recipe_id": "/maxpool/MaxPool.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe5",
-          "src_recipe_id": "/maxpool/MaxPool.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe0",
-          "src_recipe_id": "/maxpool/MaxPool.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe1",
-          "src_recipe_id": "/maxpool/MaxPool.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe2",
-          "src_recipe_id": "/maxpool/MaxPool.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe3",
-          "src_recipe_id": "/maxpool/MaxPool.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe4",
-          "src_recipe_id": "/maxpool/MaxPool.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe5",
-          "src_recipe_id": "/maxpool/MaxPool.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe0",
-          "src_recipe_id": "/maxpool/MaxPool.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe1",
-          "src_recipe_id": "/maxpool/MaxPool.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe2",
-          "src_recipe_id": "/maxpool/MaxPool.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe3",
-          "src_recipe_id": "/maxpool/MaxPool.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe4",
-          "src_recipe_id": "/maxpool/MaxPool.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_3.recipe5",
-          "src_recipe_id": "/maxpool/MaxPool.recipe5"
-        }
-      ],
-      "dst_region_id": "fused_conv_relu_3",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "/maxpool/MaxPool"
+      "src_region_id": "/Flatten"
     },
     {
       "boundary_id": "fused_conv_relu_1->/maxpool/MaxPool",
@@ -7041,157 +6226,323 @@
       "src_region_id": "fused_conv_relu_1"
     },
     {
-      "boundary_id": "fused_conv_relu_7->/layer2/layer2.0/conv2/Conv",
+      "boundary_id": "/maxpool/MaxPool->fused_conv_relu_3",
       "compatible_recipe_pairs": [
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_7.recipe0"
+          "dst_recipe_id": "fused_conv_relu_3.recipe0",
+          "src_recipe_id": "/maxpool/MaxPool.recipe0"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_7.recipe0"
+          "dst_recipe_id": "fused_conv_relu_3.recipe1",
+          "src_recipe_id": "/maxpool/MaxPool.recipe0"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_7.recipe0"
+          "dst_recipe_id": "fused_conv_relu_3.recipe2",
+          "src_recipe_id": "/maxpool/MaxPool.recipe0"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_7.recipe0"
+          "dst_recipe_id": "fused_conv_relu_3.recipe3",
+          "src_recipe_id": "/maxpool/MaxPool.recipe0"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_7.recipe0"
+          "dst_recipe_id": "fused_conv_relu_3.recipe4",
+          "src_recipe_id": "/maxpool/MaxPool.recipe0"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_7.recipe0"
+          "dst_recipe_id": "fused_conv_relu_3.recipe5",
+          "src_recipe_id": "/maxpool/MaxPool.recipe0"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_7.recipe1"
+          "dst_recipe_id": "fused_conv_relu_3.recipe0",
+          "src_recipe_id": "/maxpool/MaxPool.recipe1"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_7.recipe1"
+          "dst_recipe_id": "fused_conv_relu_3.recipe1",
+          "src_recipe_id": "/maxpool/MaxPool.recipe1"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_7.recipe1"
+          "dst_recipe_id": "fused_conv_relu_3.recipe2",
+          "src_recipe_id": "/maxpool/MaxPool.recipe1"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_7.recipe1"
+          "dst_recipe_id": "fused_conv_relu_3.recipe3",
+          "src_recipe_id": "/maxpool/MaxPool.recipe1"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_7.recipe1"
+          "dst_recipe_id": "fused_conv_relu_3.recipe4",
+          "src_recipe_id": "/maxpool/MaxPool.recipe1"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_7.recipe1"
+          "dst_recipe_id": "fused_conv_relu_3.recipe5",
+          "src_recipe_id": "/maxpool/MaxPool.recipe1"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_7.recipe2"
+          "dst_recipe_id": "fused_conv_relu_3.recipe0",
+          "src_recipe_id": "/maxpool/MaxPool.recipe2"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_7.recipe2"
+          "dst_recipe_id": "fused_conv_relu_3.recipe1",
+          "src_recipe_id": "/maxpool/MaxPool.recipe2"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_7.recipe2"
+          "dst_recipe_id": "fused_conv_relu_3.recipe2",
+          "src_recipe_id": "/maxpool/MaxPool.recipe2"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_7.recipe2"
+          "dst_recipe_id": "fused_conv_relu_3.recipe3",
+          "src_recipe_id": "/maxpool/MaxPool.recipe2"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_7.recipe2"
+          "dst_recipe_id": "fused_conv_relu_3.recipe4",
+          "src_recipe_id": "/maxpool/MaxPool.recipe2"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_7.recipe2"
+          "dst_recipe_id": "fused_conv_relu_3.recipe5",
+          "src_recipe_id": "/maxpool/MaxPool.recipe2"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_7.recipe3"
+          "dst_recipe_id": "fused_conv_relu_3.recipe0",
+          "src_recipe_id": "/maxpool/MaxPool.recipe3"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_7.recipe3"
+          "dst_recipe_id": "fused_conv_relu_3.recipe1",
+          "src_recipe_id": "/maxpool/MaxPool.recipe3"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_7.recipe3"
+          "dst_recipe_id": "fused_conv_relu_3.recipe2",
+          "src_recipe_id": "/maxpool/MaxPool.recipe3"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_7.recipe3"
+          "dst_recipe_id": "fused_conv_relu_3.recipe3",
+          "src_recipe_id": "/maxpool/MaxPool.recipe3"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_7.recipe3"
+          "dst_recipe_id": "fused_conv_relu_3.recipe4",
+          "src_recipe_id": "/maxpool/MaxPool.recipe3"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_7.recipe3"
+          "dst_recipe_id": "fused_conv_relu_3.recipe5",
+          "src_recipe_id": "/maxpool/MaxPool.recipe3"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_7.recipe4"
+          "dst_recipe_id": "fused_conv_relu_3.recipe0",
+          "src_recipe_id": "/maxpool/MaxPool.recipe4"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_7.recipe4"
+          "dst_recipe_id": "fused_conv_relu_3.recipe1",
+          "src_recipe_id": "/maxpool/MaxPool.recipe4"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_7.recipe4"
+          "dst_recipe_id": "fused_conv_relu_3.recipe2",
+          "src_recipe_id": "/maxpool/MaxPool.recipe4"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_7.recipe4"
+          "dst_recipe_id": "fused_conv_relu_3.recipe3",
+          "src_recipe_id": "/maxpool/MaxPool.recipe4"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_7.recipe4"
+          "dst_recipe_id": "fused_conv_relu_3.recipe4",
+          "src_recipe_id": "/maxpool/MaxPool.recipe4"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_7.recipe4"
+          "dst_recipe_id": "fused_conv_relu_3.recipe5",
+          "src_recipe_id": "/maxpool/MaxPool.recipe4"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_7.recipe5"
+          "dst_recipe_id": "fused_conv_relu_3.recipe0",
+          "src_recipe_id": "/maxpool/MaxPool.recipe5"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_7.recipe5"
+          "dst_recipe_id": "fused_conv_relu_3.recipe1",
+          "src_recipe_id": "/maxpool/MaxPool.recipe5"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_7.recipe5"
+          "dst_recipe_id": "fused_conv_relu_3.recipe2",
+          "src_recipe_id": "/maxpool/MaxPool.recipe5"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_7.recipe5"
+          "dst_recipe_id": "fused_conv_relu_3.recipe3",
+          "src_recipe_id": "/maxpool/MaxPool.recipe5"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_7.recipe5"
+          "dst_recipe_id": "fused_conv_relu_3.recipe4",
+          "src_recipe_id": "/maxpool/MaxPool.recipe5"
         },
         {
-          "dst_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_7.recipe5"
+          "dst_recipe_id": "fused_conv_relu_3.recipe5",
+          "src_recipe_id": "/maxpool/MaxPool.recipe5"
         }
       ],
-      "dst_region_id": "/layer2/layer2.0/conv2/Conv",
+      "dst_region_id": "fused_conv_relu_3",
       "required_layout_relations": [],
       "required_tile_domain_relations": [],
-      "src_region_id": "fused_conv_relu_7"
+      "src_region_id": "/maxpool/MaxPool"
+    },
+    {
+      "boundary_id": "/maxpool/MaxPool->fused_add_relu_19",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe0",
+          "src_recipe_id": "/maxpool/MaxPool.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe1",
+          "src_recipe_id": "/maxpool/MaxPool.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe2",
+          "src_recipe_id": "/maxpool/MaxPool.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe3",
+          "src_recipe_id": "/maxpool/MaxPool.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe4",
+          "src_recipe_id": "/maxpool/MaxPool.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe5",
+          "src_recipe_id": "/maxpool/MaxPool.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe0",
+          "src_recipe_id": "/maxpool/MaxPool.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe1",
+          "src_recipe_id": "/maxpool/MaxPool.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe2",
+          "src_recipe_id": "/maxpool/MaxPool.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe3",
+          "src_recipe_id": "/maxpool/MaxPool.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe4",
+          "src_recipe_id": "/maxpool/MaxPool.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe5",
+          "src_recipe_id": "/maxpool/MaxPool.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe0",
+          "src_recipe_id": "/maxpool/MaxPool.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe1",
+          "src_recipe_id": "/maxpool/MaxPool.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe2",
+          "src_recipe_id": "/maxpool/MaxPool.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe3",
+          "src_recipe_id": "/maxpool/MaxPool.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe4",
+          "src_recipe_id": "/maxpool/MaxPool.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe5",
+          "src_recipe_id": "/maxpool/MaxPool.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe0",
+          "src_recipe_id": "/maxpool/MaxPool.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe1",
+          "src_recipe_id": "/maxpool/MaxPool.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe2",
+          "src_recipe_id": "/maxpool/MaxPool.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe3",
+          "src_recipe_id": "/maxpool/MaxPool.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe4",
+          "src_recipe_id": "/maxpool/MaxPool.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe5",
+          "src_recipe_id": "/maxpool/MaxPool.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe0",
+          "src_recipe_id": "/maxpool/MaxPool.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe1",
+          "src_recipe_id": "/maxpool/MaxPool.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe2",
+          "src_recipe_id": "/maxpool/MaxPool.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe3",
+          "src_recipe_id": "/maxpool/MaxPool.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe4",
+          "src_recipe_id": "/maxpool/MaxPool.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe5",
+          "src_recipe_id": "/maxpool/MaxPool.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe0",
+          "src_recipe_id": "/maxpool/MaxPool.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe1",
+          "src_recipe_id": "/maxpool/MaxPool.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe2",
+          "src_recipe_id": "/maxpool/MaxPool.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe3",
+          "src_recipe_id": "/maxpool/MaxPool.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe4",
+          "src_recipe_id": "/maxpool/MaxPool.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_19.recipe5",
+          "src_recipe_id": "/maxpool/MaxPool.recipe5"
+        }
+      ],
+      "dst_region_id": "fused_add_relu_19",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "/maxpool/MaxPool"
+    },
+    {
+      "boundary_id": "fused_conv_relu_13->/layer3/layer3.1/conv2/Conv",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "/layer3/layer3.1/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_13.recipe0"
+        }
+      ],
+      "dst_region_id": "/layer3/layer3.1/conv2/Conv",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "fused_conv_relu_13"
     },
     {
       "boundary_id": "fused_conv_relu_15->/layer4/layer4.0/conv2/Conv",
@@ -7207,509 +6558,63 @@
       "src_region_id": "fused_conv_relu_15"
     },
     {
-      "boundary_id": "fused_add_relu_29->/layer4/layer4.0/downsample/downsample.0/Conv",
+      "boundary_id": "/layer3/layer3.1/conv2/Conv->fused_add_relu_29",
       "compatible_recipe_pairs": [
         {
-          "dst_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe0",
-          "src_recipe_id": "fused_add_relu_29.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe1",
-          "src_recipe_id": "fused_add_relu_29.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe2",
-          "src_recipe_id": "fused_add_relu_29.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe3",
-          "src_recipe_id": "fused_add_relu_29.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe4",
-          "src_recipe_id": "fused_add_relu_29.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe5",
-          "src_recipe_id": "fused_add_relu_29.recipe0"
+          "dst_recipe_id": "fused_add_relu_29.recipe0",
+          "src_recipe_id": "/layer3/layer3.1/conv2/Conv.recipe0"
         }
       ],
-      "dst_region_id": "/layer4/layer4.0/downsample/downsample.0/Conv",
+      "dst_region_id": "fused_add_relu_29",
       "required_layout_relations": [],
       "required_tile_domain_relations": [],
-      "src_region_id": "fused_add_relu_29"
+      "src_region_id": "/layer3/layer3.1/conv2/Conv"
     },
     {
-      "boundary_id": "fused_add_relu_29->fused_conv_relu_15",
+      "boundary_id": "/layer4/layer4.0/downsample/downsample.0/Conv->fused_add_relu_31",
       "compatible_recipe_pairs": [
         {
-          "dst_recipe_id": "fused_conv_relu_15.recipe0",
-          "src_recipe_id": "fused_add_relu_29.recipe0"
+          "dst_recipe_id": "fused_add_relu_31.recipe0",
+          "src_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_31.recipe0",
+          "src_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_31.recipe0",
+          "src_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_31.recipe0",
+          "src_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_31.recipe0",
+          "src_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_31.recipe0",
+          "src_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe5"
         }
       ],
-      "dst_region_id": "fused_conv_relu_15",
+      "dst_region_id": "fused_add_relu_31",
       "required_layout_relations": [],
       "required_tile_domain_relations": [],
-      "src_region_id": "fused_add_relu_29"
+      "src_region_id": "/layer4/layer4.0/downsample/downsample.0/Conv"
     },
     {
-      "boundary_id": "fused_add_relu_19->fused_add_relu_21",
+      "boundary_id": "fused_add_relu_33->/avgpool/GlobalAveragePool",
       "compatible_recipe_pairs": [
         {
-          "dst_recipe_id": "fused_add_relu_21.recipe0",
-          "src_recipe_id": "fused_add_relu_19.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe1",
-          "src_recipe_id": "fused_add_relu_19.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe2",
-          "src_recipe_id": "fused_add_relu_19.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe3",
-          "src_recipe_id": "fused_add_relu_19.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe4",
-          "src_recipe_id": "fused_add_relu_19.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe5",
-          "src_recipe_id": "fused_add_relu_19.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe0",
-          "src_recipe_id": "fused_add_relu_19.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe1",
-          "src_recipe_id": "fused_add_relu_19.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe2",
-          "src_recipe_id": "fused_add_relu_19.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe3",
-          "src_recipe_id": "fused_add_relu_19.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe4",
-          "src_recipe_id": "fused_add_relu_19.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe5",
-          "src_recipe_id": "fused_add_relu_19.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe0",
-          "src_recipe_id": "fused_add_relu_19.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe1",
-          "src_recipe_id": "fused_add_relu_19.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe2",
-          "src_recipe_id": "fused_add_relu_19.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe3",
-          "src_recipe_id": "fused_add_relu_19.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe4",
-          "src_recipe_id": "fused_add_relu_19.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe5",
-          "src_recipe_id": "fused_add_relu_19.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe0",
-          "src_recipe_id": "fused_add_relu_19.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe1",
-          "src_recipe_id": "fused_add_relu_19.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe2",
-          "src_recipe_id": "fused_add_relu_19.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe3",
-          "src_recipe_id": "fused_add_relu_19.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe4",
-          "src_recipe_id": "fused_add_relu_19.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe5",
-          "src_recipe_id": "fused_add_relu_19.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe0",
-          "src_recipe_id": "fused_add_relu_19.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe1",
-          "src_recipe_id": "fused_add_relu_19.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe2",
-          "src_recipe_id": "fused_add_relu_19.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe3",
-          "src_recipe_id": "fused_add_relu_19.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe4",
-          "src_recipe_id": "fused_add_relu_19.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe5",
-          "src_recipe_id": "fused_add_relu_19.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe0",
-          "src_recipe_id": "fused_add_relu_19.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe1",
-          "src_recipe_id": "fused_add_relu_19.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe2",
-          "src_recipe_id": "fused_add_relu_19.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe3",
-          "src_recipe_id": "fused_add_relu_19.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe4",
-          "src_recipe_id": "fused_add_relu_19.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_add_relu_21.recipe5",
-          "src_recipe_id": "fused_add_relu_19.recipe5"
+          "dst_recipe_id": "/avgpool/GlobalAveragePool.recipe0",
+          "src_recipe_id": "fused_add_relu_33.recipe0"
         }
       ],
-      "dst_region_id": "fused_add_relu_21",
+      "dst_region_id": "/avgpool/GlobalAveragePool",
       "required_layout_relations": [],
       "required_tile_domain_relations": [],
-      "src_region_id": "fused_add_relu_19"
-    },
-    {
-      "boundary_id": "fused_add_relu_19->fused_conv_relu_5",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe0",
-          "src_recipe_id": "fused_add_relu_19.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe1",
-          "src_recipe_id": "fused_add_relu_19.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe2",
-          "src_recipe_id": "fused_add_relu_19.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe3",
-          "src_recipe_id": "fused_add_relu_19.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe4",
-          "src_recipe_id": "fused_add_relu_19.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe5",
-          "src_recipe_id": "fused_add_relu_19.recipe0"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe0",
-          "src_recipe_id": "fused_add_relu_19.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe1",
-          "src_recipe_id": "fused_add_relu_19.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe2",
-          "src_recipe_id": "fused_add_relu_19.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe3",
-          "src_recipe_id": "fused_add_relu_19.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe4",
-          "src_recipe_id": "fused_add_relu_19.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe5",
-          "src_recipe_id": "fused_add_relu_19.recipe1"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe0",
-          "src_recipe_id": "fused_add_relu_19.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe1",
-          "src_recipe_id": "fused_add_relu_19.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe2",
-          "src_recipe_id": "fused_add_relu_19.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe3",
-          "src_recipe_id": "fused_add_relu_19.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe4",
-          "src_recipe_id": "fused_add_relu_19.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe5",
-          "src_recipe_id": "fused_add_relu_19.recipe2"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe0",
-          "src_recipe_id": "fused_add_relu_19.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe1",
-          "src_recipe_id": "fused_add_relu_19.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe2",
-          "src_recipe_id": "fused_add_relu_19.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe3",
-          "src_recipe_id": "fused_add_relu_19.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe4",
-          "src_recipe_id": "fused_add_relu_19.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe5",
-          "src_recipe_id": "fused_add_relu_19.recipe3"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe0",
-          "src_recipe_id": "fused_add_relu_19.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe1",
-          "src_recipe_id": "fused_add_relu_19.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe2",
-          "src_recipe_id": "fused_add_relu_19.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe3",
-          "src_recipe_id": "fused_add_relu_19.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe4",
-          "src_recipe_id": "fused_add_relu_19.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe5",
-          "src_recipe_id": "fused_add_relu_19.recipe4"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe0",
-          "src_recipe_id": "fused_add_relu_19.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe1",
-          "src_recipe_id": "fused_add_relu_19.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe2",
-          "src_recipe_id": "fused_add_relu_19.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe3",
-          "src_recipe_id": "fused_add_relu_19.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe4",
-          "src_recipe_id": "fused_add_relu_19.recipe5"
-        },
-        {
-          "dst_recipe_id": "fused_conv_relu_5.recipe5",
-          "src_recipe_id": "fused_add_relu_19.recipe5"
-        }
-      ],
-      "dst_region_id": "fused_conv_relu_5",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "fused_add_relu_19"
-    },
-    {
-      "boundary_id": "fused_conv_relu_3->/layer1/layer1.0/conv2/Conv",
-      "compatible_recipe_pairs": [
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_3.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_3.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_3.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_3.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_3.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_3.recipe0"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_3.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_3.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_3.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_3.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_3.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_3.recipe1"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_3.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_3.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_3.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_3.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_3.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_3.recipe2"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_3.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_3.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_3.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_3.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_3.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_3.recipe3"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_3.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_3.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_3.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_3.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_3.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_3.recipe4"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0",
-          "src_recipe_id": "fused_conv_relu_3.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1",
-          "src_recipe_id": "fused_conv_relu_3.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2",
-          "src_recipe_id": "fused_conv_relu_3.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3",
-          "src_recipe_id": "fused_conv_relu_3.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4",
-          "src_recipe_id": "fused_conv_relu_3.recipe5"
-        },
-        {
-          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5",
-          "src_recipe_id": "fused_conv_relu_3.recipe5"
-        }
-      ],
-      "dst_region_id": "/layer1/layer1.0/conv2/Conv",
-      "required_layout_relations": [],
-      "required_tile_domain_relations": [],
-      "src_region_id": "fused_conv_relu_3"
+      "src_region_id": "fused_add_relu_33"
     },
     {
       "boundary_id": "/layer2/layer2.1/conv2/Conv->fused_add_relu_25",
@@ -7863,6 +6768,570 @@
       "required_layout_relations": [],
       "required_tile_domain_relations": [],
       "src_region_id": "/layer2/layer2.1/conv2/Conv"
+    },
+    {
+      "boundary_id": "/layer3/layer3.0/conv2/Conv->fused_add_relu_27",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "fused_add_relu_27.recipe0",
+          "src_recipe_id": "/layer3/layer3.0/conv2/Conv.recipe0"
+        }
+      ],
+      "dst_region_id": "fused_add_relu_27",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "/layer3/layer3.0/conv2/Conv"
+    },
+    {
+      "boundary_id": "fused_conv_relu_9->/layer2/layer2.1/conv2/Conv",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_9.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_9.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_9.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_9.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_9.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_9.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_9.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_9.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_9.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_9.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_9.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_9.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_9.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_9.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_9.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_9.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_9.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_9.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_9.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_9.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_9.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_9.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_9.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_9.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_9.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_9.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_9.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_9.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_9.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_9.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_9.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_9.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_9.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_9.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_9.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer2/layer2.1/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_9.recipe5"
+        }
+      ],
+      "dst_region_id": "/layer2/layer2.1/conv2/Conv",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "fused_conv_relu_9"
+    },
+    {
+      "boundary_id": "/layer3/layer3.0/downsample/downsample.0/Conv->fused_add_relu_27",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "fused_add_relu_27.recipe0",
+          "src_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_27.recipe0",
+          "src_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_27.recipe0",
+          "src_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_27.recipe0",
+          "src_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_27.recipe0",
+          "src_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_27.recipe0",
+          "src_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe5"
+        }
+      ],
+      "dst_region_id": "fused_add_relu_27",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "/layer3/layer3.0/downsample/downsample.0/Conv"
+    },
+    {
+      "boundary_id": "fused_add_relu_27->fused_conv_relu_13",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "fused_conv_relu_13.recipe0",
+          "src_recipe_id": "fused_add_relu_27.recipe0"
+        }
+      ],
+      "dst_region_id": "fused_conv_relu_13",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "fused_add_relu_27"
+    },
+    {
+      "boundary_id": "fused_add_relu_27->fused_add_relu_29",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "fused_add_relu_29.recipe0",
+          "src_recipe_id": "fused_add_relu_27.recipe0"
+        }
+      ],
+      "dst_region_id": "fused_add_relu_29",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "fused_add_relu_27"
+    },
+    {
+      "boundary_id": "/layer2/layer2.0/conv2/Conv->fused_add_relu_23",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe0",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe1",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe2",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe3",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe4",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe5",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe0",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe1",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe2",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe3",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe4",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe5",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe0",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe1",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe2",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe3",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe4",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe5",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe0",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe1",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe2",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe3",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe4",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe5",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe0",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe1",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe2",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe3",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe4",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe5",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe0",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe1",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe2",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe3",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe4",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_23.recipe5",
+          "src_recipe_id": "/layer2/layer2.0/conv2/Conv.recipe5"
+        }
+      ],
+      "dst_region_id": "fused_add_relu_23",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "/layer2/layer2.0/conv2/Conv"
+    },
+    {
+      "boundary_id": "fused_add_relu_25->fused_conv_relu_11",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "fused_conv_relu_11.recipe0",
+          "src_recipe_id": "fused_add_relu_25.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_11.recipe0",
+          "src_recipe_id": "fused_add_relu_25.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_11.recipe0",
+          "src_recipe_id": "fused_add_relu_25.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_11.recipe0",
+          "src_recipe_id": "fused_add_relu_25.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_11.recipe0",
+          "src_recipe_id": "fused_add_relu_25.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_11.recipe0",
+          "src_recipe_id": "fused_add_relu_25.recipe5"
+        }
+      ],
+      "dst_region_id": "fused_conv_relu_11",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "fused_add_relu_25"
+    },
+    {
+      "boundary_id": "fused_add_relu_25->/layer3/layer3.0/downsample/downsample.0/Conv",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0",
+          "src_recipe_id": "fused_add_relu_25.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe1",
+          "src_recipe_id": "fused_add_relu_25.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe2",
+          "src_recipe_id": "fused_add_relu_25.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe3",
+          "src_recipe_id": "fused_add_relu_25.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe4",
+          "src_recipe_id": "fused_add_relu_25.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe5",
+          "src_recipe_id": "fused_add_relu_25.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0",
+          "src_recipe_id": "fused_add_relu_25.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe1",
+          "src_recipe_id": "fused_add_relu_25.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe2",
+          "src_recipe_id": "fused_add_relu_25.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe3",
+          "src_recipe_id": "fused_add_relu_25.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe4",
+          "src_recipe_id": "fused_add_relu_25.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe5",
+          "src_recipe_id": "fused_add_relu_25.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0",
+          "src_recipe_id": "fused_add_relu_25.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe1",
+          "src_recipe_id": "fused_add_relu_25.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe2",
+          "src_recipe_id": "fused_add_relu_25.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe3",
+          "src_recipe_id": "fused_add_relu_25.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe4",
+          "src_recipe_id": "fused_add_relu_25.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe5",
+          "src_recipe_id": "fused_add_relu_25.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0",
+          "src_recipe_id": "fused_add_relu_25.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe1",
+          "src_recipe_id": "fused_add_relu_25.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe2",
+          "src_recipe_id": "fused_add_relu_25.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe3",
+          "src_recipe_id": "fused_add_relu_25.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe4",
+          "src_recipe_id": "fused_add_relu_25.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe5",
+          "src_recipe_id": "fused_add_relu_25.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0",
+          "src_recipe_id": "fused_add_relu_25.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe1",
+          "src_recipe_id": "fused_add_relu_25.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe2",
+          "src_recipe_id": "fused_add_relu_25.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe3",
+          "src_recipe_id": "fused_add_relu_25.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe4",
+          "src_recipe_id": "fused_add_relu_25.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe5",
+          "src_recipe_id": "fused_add_relu_25.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe0",
+          "src_recipe_id": "fused_add_relu_25.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe1",
+          "src_recipe_id": "fused_add_relu_25.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe2",
+          "src_recipe_id": "fused_add_relu_25.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe3",
+          "src_recipe_id": "fused_add_relu_25.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe4",
+          "src_recipe_id": "fused_add_relu_25.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer3/layer3.0/downsample/downsample.0/Conv.recipe5",
+          "src_recipe_id": "fused_add_relu_25.recipe5"
+        }
+      ],
+      "dst_region_id": "/layer3/layer3.0/downsample/downsample.0/Conv",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "fused_add_relu_25"
     },
     {
       "boundary_id": "fused_add_relu_23->fused_conv_relu_9",
@@ -8171,17 +7640,548 @@
       "src_region_id": "fused_add_relu_23"
     },
     {
-      "boundary_id": "/layer3/layer3.0/conv2/Conv->fused_add_relu_27",
+      "boundary_id": "/layer4/layer4.1/conv2/Conv->fused_add_relu_33",
       "compatible_recipe_pairs": [
         {
-          "dst_recipe_id": "fused_add_relu_27.recipe0",
-          "src_recipe_id": "/layer3/layer3.0/conv2/Conv.recipe0"
+          "dst_recipe_id": "fused_add_relu_33.recipe0",
+          "src_recipe_id": "/layer4/layer4.1/conv2/Conv.recipe0"
         }
       ],
-      "dst_region_id": "fused_add_relu_27",
+      "dst_region_id": "fused_add_relu_33",
       "required_layout_relations": [],
       "required_tile_domain_relations": [],
-      "src_region_id": "/layer3/layer3.0/conv2/Conv"
+      "src_region_id": "/layer4/layer4.1/conv2/Conv"
+    },
+    {
+      "boundary_id": "fused_conv_relu_17->/layer4/layer4.1/conv2/Conv",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "/layer4/layer4.1/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_17.recipe0"
+        }
+      ],
+      "dst_region_id": "/layer4/layer4.1/conv2/Conv",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "fused_conv_relu_17"
+    },
+    {
+      "boundary_id": "/avgpool/GlobalAveragePool->/Flatten",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "/Flatten.recipe0",
+          "src_recipe_id": "/avgpool/GlobalAveragePool.recipe0"
+        }
+      ],
+      "dst_region_id": "/Flatten",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "/avgpool/GlobalAveragePool"
+    },
+    {
+      "boundary_id": "fused_add_relu_29->fused_conv_relu_15",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "fused_conv_relu_15.recipe0",
+          "src_recipe_id": "fused_add_relu_29.recipe0"
+        }
+      ],
+      "dst_region_id": "fused_conv_relu_15",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "fused_add_relu_29"
+    },
+    {
+      "boundary_id": "fused_add_relu_29->/layer4/layer4.0/downsample/downsample.0/Conv",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe0",
+          "src_recipe_id": "fused_add_relu_29.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe1",
+          "src_recipe_id": "fused_add_relu_29.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe2",
+          "src_recipe_id": "fused_add_relu_29.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe3",
+          "src_recipe_id": "fused_add_relu_29.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe4",
+          "src_recipe_id": "fused_add_relu_29.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer4/layer4.0/downsample/downsample.0/Conv.recipe5",
+          "src_recipe_id": "fused_add_relu_29.recipe0"
+        }
+      ],
+      "dst_region_id": "/layer4/layer4.0/downsample/downsample.0/Conv",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "fused_add_relu_29"
+    },
+    {
+      "boundary_id": "fused_conv_relu_3->/layer1/layer1.0/conv2/Conv",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_3.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_3.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_3.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_3.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_3.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_3.recipe0"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_3.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_3.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_3.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_3.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_3.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_3.recipe1"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_3.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_3.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_3.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_3.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_3.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_3.recipe2"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_3.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_3.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_3.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_3.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_3.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_3.recipe3"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_3.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_3.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_3.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_3.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_3.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_3.recipe4"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe0",
+          "src_recipe_id": "fused_conv_relu_3.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe1",
+          "src_recipe_id": "fused_conv_relu_3.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe2",
+          "src_recipe_id": "fused_conv_relu_3.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe3",
+          "src_recipe_id": "fused_conv_relu_3.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe4",
+          "src_recipe_id": "fused_conv_relu_3.recipe5"
+        },
+        {
+          "dst_recipe_id": "/layer1/layer1.0/conv2/Conv.recipe5",
+          "src_recipe_id": "fused_conv_relu_3.recipe5"
+        }
+      ],
+      "dst_region_id": "/layer1/layer1.0/conv2/Conv",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "fused_conv_relu_3"
+    },
+    {
+      "boundary_id": "fused_add_relu_19->fused_conv_relu_5",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe0",
+          "src_recipe_id": "fused_add_relu_19.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe1",
+          "src_recipe_id": "fused_add_relu_19.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe2",
+          "src_recipe_id": "fused_add_relu_19.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe3",
+          "src_recipe_id": "fused_add_relu_19.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe4",
+          "src_recipe_id": "fused_add_relu_19.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe5",
+          "src_recipe_id": "fused_add_relu_19.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe0",
+          "src_recipe_id": "fused_add_relu_19.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe1",
+          "src_recipe_id": "fused_add_relu_19.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe2",
+          "src_recipe_id": "fused_add_relu_19.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe3",
+          "src_recipe_id": "fused_add_relu_19.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe4",
+          "src_recipe_id": "fused_add_relu_19.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe5",
+          "src_recipe_id": "fused_add_relu_19.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe0",
+          "src_recipe_id": "fused_add_relu_19.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe1",
+          "src_recipe_id": "fused_add_relu_19.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe2",
+          "src_recipe_id": "fused_add_relu_19.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe3",
+          "src_recipe_id": "fused_add_relu_19.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe4",
+          "src_recipe_id": "fused_add_relu_19.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe5",
+          "src_recipe_id": "fused_add_relu_19.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe0",
+          "src_recipe_id": "fused_add_relu_19.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe1",
+          "src_recipe_id": "fused_add_relu_19.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe2",
+          "src_recipe_id": "fused_add_relu_19.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe3",
+          "src_recipe_id": "fused_add_relu_19.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe4",
+          "src_recipe_id": "fused_add_relu_19.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe5",
+          "src_recipe_id": "fused_add_relu_19.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe0",
+          "src_recipe_id": "fused_add_relu_19.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe1",
+          "src_recipe_id": "fused_add_relu_19.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe2",
+          "src_recipe_id": "fused_add_relu_19.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe3",
+          "src_recipe_id": "fused_add_relu_19.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe4",
+          "src_recipe_id": "fused_add_relu_19.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe5",
+          "src_recipe_id": "fused_add_relu_19.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe0",
+          "src_recipe_id": "fused_add_relu_19.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe1",
+          "src_recipe_id": "fused_add_relu_19.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe2",
+          "src_recipe_id": "fused_add_relu_19.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe3",
+          "src_recipe_id": "fused_add_relu_19.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe4",
+          "src_recipe_id": "fused_add_relu_19.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_conv_relu_5.recipe5",
+          "src_recipe_id": "fused_add_relu_19.recipe5"
+        }
+      ],
+      "dst_region_id": "fused_conv_relu_5",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "fused_add_relu_19"
+    },
+    {
+      "boundary_id": "fused_add_relu_19->fused_add_relu_21",
+      "compatible_recipe_pairs": [
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe0",
+          "src_recipe_id": "fused_add_relu_19.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe1",
+          "src_recipe_id": "fused_add_relu_19.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe2",
+          "src_recipe_id": "fused_add_relu_19.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe3",
+          "src_recipe_id": "fused_add_relu_19.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe4",
+          "src_recipe_id": "fused_add_relu_19.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe5",
+          "src_recipe_id": "fused_add_relu_19.recipe0"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe0",
+          "src_recipe_id": "fused_add_relu_19.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe1",
+          "src_recipe_id": "fused_add_relu_19.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe2",
+          "src_recipe_id": "fused_add_relu_19.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe3",
+          "src_recipe_id": "fused_add_relu_19.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe4",
+          "src_recipe_id": "fused_add_relu_19.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe5",
+          "src_recipe_id": "fused_add_relu_19.recipe1"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe0",
+          "src_recipe_id": "fused_add_relu_19.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe1",
+          "src_recipe_id": "fused_add_relu_19.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe2",
+          "src_recipe_id": "fused_add_relu_19.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe3",
+          "src_recipe_id": "fused_add_relu_19.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe4",
+          "src_recipe_id": "fused_add_relu_19.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe5",
+          "src_recipe_id": "fused_add_relu_19.recipe2"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe0",
+          "src_recipe_id": "fused_add_relu_19.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe1",
+          "src_recipe_id": "fused_add_relu_19.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe2",
+          "src_recipe_id": "fused_add_relu_19.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe3",
+          "src_recipe_id": "fused_add_relu_19.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe4",
+          "src_recipe_id": "fused_add_relu_19.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe5",
+          "src_recipe_id": "fused_add_relu_19.recipe3"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe0",
+          "src_recipe_id": "fused_add_relu_19.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe1",
+          "src_recipe_id": "fused_add_relu_19.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe2",
+          "src_recipe_id": "fused_add_relu_19.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe3",
+          "src_recipe_id": "fused_add_relu_19.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe4",
+          "src_recipe_id": "fused_add_relu_19.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe5",
+          "src_recipe_id": "fused_add_relu_19.recipe4"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe0",
+          "src_recipe_id": "fused_add_relu_19.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe1",
+          "src_recipe_id": "fused_add_relu_19.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe2",
+          "src_recipe_id": "fused_add_relu_19.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe3",
+          "src_recipe_id": "fused_add_relu_19.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe4",
+          "src_recipe_id": "fused_add_relu_19.recipe5"
+        },
+        {
+          "dst_recipe_id": "fused_add_relu_21.recipe5",
+          "src_recipe_id": "fused_add_relu_19.recipe5"
+        }
+      ],
+      "dst_region_id": "fused_add_relu_21",
+      "required_layout_relations": [],
+      "required_tile_domain_relations": [],
+      "src_region_id": "fused_add_relu_19"
     }
   ],
   "default_alignment_bytes": 16,
@@ -19778,7 +19778,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 952596,
+        "resident_bytes": 945684,
         "scratch_bytes": 9408,
         "transfer_bytes": 171540
       }
@@ -19790,7 +19790,7 @@
         "fused_conv_relu_1.recipe1.compute"
       ],
       "cost_parameters": {
-        "latency": 41073,
+        "latency": 39871,
         "launch_overhead": 40
       },
       "layout_spec": {
@@ -19812,9 +19812,9 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 952596,
+        "resident_bytes": 505804,
         "scratch_bytes": 9408,
-        "transfer_bytes": 171540
+        "transfer_bytes": 133068
       }
     },
     {
@@ -19824,7 +19824,7 @@
         "fused_conv_relu_1.recipe2.compute"
       ],
       "cost_parameters": {
-        "latency": 42445,
+        "latency": 41206,
         "launch_overhead": 40
       },
       "layout_spec": {
@@ -19846,9 +19846,9 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 952596,
+        "resident_bytes": 518964,
         "scratch_bytes": 9408,
-        "transfer_bytes": 171540
+        "transfer_bytes": 131892
       }
     },
     {
@@ -19858,7 +19858,7 @@
         "fused_conv_relu_1.recipe3.compute"
       ],
       "cost_parameters": {
-        "latency": 23237,
+        "latency": 21090,
         "launch_overhead": 40
       },
       "layout_spec": {
@@ -19880,9 +19880,9 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 952596,
+        "resident_bytes": 289196,
         "scratch_bytes": 9408,
-        "transfer_bytes": 171540
+        "transfer_bytes": 102828
       }
     },
     {
@@ -19892,7 +19892,7 @@
         "fused_conv_relu_1.recipe4.compute"
       ],
       "cost_parameters": {
-        "latency": 8145,
+        "latency": 5912,
         "launch_overhead": 40
       },
       "layout_spec": {
@@ -19914,9 +19914,9 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 952596,
+        "resident_bytes": 128764,
         "scratch_bytes": 9408,
-        "transfer_bytes": 171540
+        "transfer_bytes": 100092
       }
     },
     {
@@ -19926,7 +19926,7 @@
         "fused_conv_relu_1.recipe5.compute"
       ],
       "cost_parameters": {
-        "latency": 6063,
+        "latency": 3607,
         "launch_overhead": 40
       },
       "layout_spec": {
@@ -19948,9 +19948,9 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 952596,
+        "resident_bytes": 99864,
         "scratch_bytes": 9408,
-        "transfer_bytes": 171540
+        "transfer_bytes": 92952
       }
     },
     {
@@ -19979,7 +19979,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1196800,
+        "resident_bytes": 967424,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -20010,7 +20010,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1196800,
+        "resident_bytes": 664576,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -20041,7 +20041,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1196800,
+        "resident_bytes": 680704,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -20072,7 +20072,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1196800,
+        "resident_bytes": 478208,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -20103,7 +20103,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1196800,
+        "resident_bytes": 448256,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -20134,7 +20134,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1196800,
+        "resident_bytes": 404224,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -20167,7 +20167,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 868352,
+        "resident_bytes": 825344,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20200,7 +20200,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 868352,
+        "resident_bytes": 445952,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20233,7 +20233,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 868352,
+        "resident_bytes": 438272,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20266,7 +20266,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 868352,
+        "resident_bytes": 245248,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20299,7 +20299,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 868352,
+        "resident_bytes": 95744,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20332,7 +20332,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 868352,
+        "resident_bytes": 65024,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20398,7 +20398,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 825344,
+        "resident_bytes": 445952,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20431,7 +20431,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 825344,
+        "resident_bytes": 438272,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20464,7 +20464,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 825344,
+        "resident_bytes": 245248,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20497,7 +20497,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 825344,
+        "resident_bytes": 95744,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20530,7 +20530,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 825344,
+        "resident_bytes": 65024,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20561,7 +20561,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1204224,
+        "resident_bytes": 1118208,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -20592,7 +20592,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1204224,
+        "resident_bytes": 559104,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -20623,7 +20623,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1204224,
+        "resident_bytes": 559104,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -20654,7 +20654,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1204224,
+        "resident_bytes": 279552,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -20685,7 +20685,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1204224,
+        "resident_bytes": 43008,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -20716,7 +20716,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1204224,
+        "resident_bytes": 19968,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -20749,7 +20749,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 868352,
+        "resident_bytes": 825344,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20782,7 +20782,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 868352,
+        "resident_bytes": 445952,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20815,7 +20815,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 868352,
+        "resident_bytes": 438272,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20848,7 +20848,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 868352,
+        "resident_bytes": 245248,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20881,7 +20881,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 868352,
+        "resident_bytes": 95744,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20914,7 +20914,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 868352,
+        "resident_bytes": 65024,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -20980,7 +20980,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 825344,
+        "resident_bytes": 445952,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -21013,7 +21013,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 825344,
+        "resident_bytes": 438272,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -21046,7 +21046,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 825344,
+        "resident_bytes": 245248,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -21079,7 +21079,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 825344,
+        "resident_bytes": 95744,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -21112,7 +21112,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 825344,
+        "resident_bytes": 65024,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -21143,7 +21143,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1422080,
+        "resident_bytes": 1118208,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -21174,7 +21174,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1422080,
+        "resident_bytes": 559104,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -21205,7 +21205,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1422080,
+        "resident_bytes": 559104,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -21236,7 +21236,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1422080,
+        "resident_bytes": 279552,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -21267,7 +21267,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1422080,
+        "resident_bytes": 43008,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -21298,7 +21298,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 1422080,
+        "resident_bytes": 19968,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -21364,7 +21364,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 967424,
+        "resident_bytes": 626432,
         "scratch_bytes": 4096,
         "transfer_bytes": 4096
       }
@@ -21397,7 +21397,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 967424,
+        "resident_bytes": 641280,
         "scratch_bytes": 4096,
         "transfer_bytes": 4096
       }
@@ -21430,7 +21430,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 967424,
+        "resident_bytes": 429312,
         "scratch_bytes": 4096,
         "transfer_bytes": 4096
       }
@@ -21463,7 +21463,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 967424,
+        "resident_bytes": 342272,
         "scratch_bytes": 4096,
         "transfer_bytes": 4096
       }
@@ -21496,7 +21496,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 967424,
+        "resident_bytes": 338432,
         "scratch_bytes": 4096,
         "transfer_bytes": 4096
       }
@@ -21529,7 +21529,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 871168,
+        "resident_bytes": 660736,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -21562,7 +21562,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 871168,
+        "resident_bytes": 458240,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -21595,7 +21595,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 871168,
+        "resident_bytes": 456448,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -21628,7 +21628,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 871168,
+        "resident_bytes": 329216,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -21661,7 +21661,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 871168,
+        "resident_bytes": 284672,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -21694,7 +21694,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 871168,
+        "resident_bytes": 266752,
         "scratch_bytes": 36864,
         "transfer_bytes": 36864
       }
@@ -21727,7 +21727,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 389120,
+        "resident_bytes": 342016,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -21760,7 +21760,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 389120,
+        "resident_bytes": 223232,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -21793,7 +21793,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 389120,
+        "resident_bytes": 212992,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -21826,7 +21826,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 389120,
+        "resident_bytes": 151552,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -21859,7 +21859,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 389120,
+        "resident_bytes": 134144,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -21892,7 +21892,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 389120,
+        "resident_bytes": 93184,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -21923,7 +21923,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 598016,
+        "resident_bytes": 344064,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -21954,7 +21954,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 598016,
+        "resident_bytes": 172032,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -21985,7 +21985,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 598016,
+        "resident_bytes": 172032,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -22016,7 +22016,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 598016,
+        "resident_bytes": 86016,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -22047,7 +22047,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 598016,
+        "resident_bytes": 43008,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -22078,7 +22078,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 598016,
+        "resident_bytes": 12288,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -22111,7 +22111,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 380928,
+        "resident_bytes": 342016,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -22144,7 +22144,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 380928,
+        "resident_bytes": 223232,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -22177,7 +22177,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 380928,
+        "resident_bytes": 212992,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -22210,7 +22210,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 380928,
+        "resident_bytes": 151552,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -22243,7 +22243,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 380928,
+        "resident_bytes": 134144,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -22276,7 +22276,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 380928,
+        "resident_bytes": 93184,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -22342,7 +22342,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 342016,
+        "resident_bytes": 223232,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -22375,7 +22375,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 342016,
+        "resident_bytes": 212992,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -22408,7 +22408,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 342016,
+        "resident_bytes": 151552,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -22441,7 +22441,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 342016,
+        "resident_bytes": 134144,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -22474,7 +22474,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 342016,
+        "resident_bytes": 93184,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -22505,7 +22505,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 641536,
+        "resident_bytes": 344064,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -22536,7 +22536,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 641536,
+        "resident_bytes": 172032,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -22567,7 +22567,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 641536,
+        "resident_bytes": 172032,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -22598,7 +22598,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 641536,
+        "resident_bytes": 86016,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -22629,7 +22629,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 641536,
+        "resident_bytes": 43008,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -22660,7 +22660,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 641536,
+        "resident_bytes": 12288,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -22726,7 +22726,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 582144,
+        "resident_bytes": 385024,
         "scratch_bytes": 8192,
         "transfer_bytes": 8192
       }
@@ -22759,7 +22759,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 582144,
+        "resident_bytes": 385024,
         "scratch_bytes": 8192,
         "transfer_bytes": 8192
       }
@@ -22792,7 +22792,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 582144,
+        "resident_bytes": 263168,
         "scratch_bytes": 8192,
         "transfer_bytes": 8192
       }
@@ -22825,7 +22825,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 582144,
+        "resident_bytes": 216064,
         "scratch_bytes": 8192,
         "transfer_bytes": 8192
       }
@@ -22858,7 +22858,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 582144,
+        "resident_bytes": 216064,
         "scratch_bytes": 8192,
         "transfer_bytes": 8192
       }
@@ -22891,7 +22891,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 456192,
+        "resident_bytes": 79360,
         "scratch_bytes": 73728,
         "transfer_bytes": 73728
       }
@@ -22955,7 +22955,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 210944,
+        "resident_bytes": 3072,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -22988,7 +22988,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 165888,
+        "resident_bytes": 157696,
         "scratch_bytes": 147456,
         "transfer_bytes": 147456
       }
@@ -23052,7 +23052,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 183296,
+        "resident_bytes": 3072,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -23118,7 +23118,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 289792,
+        "resident_bytes": 179200,
         "scratch_bytes": 16384,
         "transfer_bytes": 16384
       }
@@ -23151,7 +23151,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 289792,
+        "resident_bytes": 179200,
         "scratch_bytes": 16384,
         "transfer_bytes": 16384
       }
@@ -23184,7 +23184,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 289792,
+        "resident_bytes": 117760,
         "scratch_bytes": 16384,
         "transfer_bytes": 16384
       }
@@ -23217,7 +23217,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 289792,
+        "resident_bytes": 123904,
         "scratch_bytes": 16384,
         "transfer_bytes": 16384
       }
@@ -23250,7 +23250,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 289792,
+        "resident_bytes": 123904,
         "scratch_bytes": 16384,
         "transfer_bytes": 16384
       }
@@ -23283,7 +23283,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 338944,
+        "resident_bytes": 158720,
         "scratch_bytes": 147456,
         "transfer_bytes": 147456
       }
@@ -23347,7 +23347,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 120832,
+        "resident_bytes": 6144,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
@@ -23380,7 +23380,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 331776,
+        "resident_bytes": 315392,
         "scratch_bytes": 294912,
         "transfer_bytes": 294912
       }
@@ -23444,7 +23444,7 @@
         ]
       },
       "value_footprint": {
-        "resident_bytes": 22528,
+        "resident_bytes": 6144,
         "scratch_bytes": 0,
         "transfer_bytes": 0
       }
