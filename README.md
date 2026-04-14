@@ -1,198 +1,269 @@
 # nnc-joint-solver
 
-Standalone external solver for `nnc-py` joint tiling/schedule problems.
+A joint solver for the Neural Network Compiler that solves the combined **tiling selection, scheduling, and SRAM placement** optimization problem for neural network inference on hardware accelerators (NPUs).
 
-## Scope
+## Problem Definition
 
-This repository owns:
+Given a `JointProblem`, the solver must simultaneously make the following decisions:
 
-- the external `joint_tiling_schedule_*_v1` contract used by the solver
-- contract validation
-- a deterministic baseline solver
-- a stdin/stdout CLI entrypoint
+1. **Recipe Selection** — Each compute region has multiple candidate tiling strategies (recipes). The solver picks exactly one recipe per region, and adjacent regions' recipes must satisfy boundary compatibility constraints (`boundary_constraints`).
+2. **Action Scheduling** — All actions (compute, DMA in/out, spill, reload) must be assigned start times that respect dependency edge constraints and resource exclusivity (no two actions on the same resource may overlap in time).
+3. **SRAM Residency Windows** — Determine the time interval during which each value that needs to reside in SRAM is present, ensuring values are resident when read.
+4. **SRAM Offset Allocation** — Assign memory offsets to all SRAM items (temp buffers, transfer buffers, resident windows) so that simultaneously-live items do not overlap spatially, and total usage stays within `sram_capacity_bytes`.
 
-It does not contain compiler passes, materialization, or code generation.
+**Objective: minimize makespan** (the end time of the last action).
 
-## Problem Class
+## Installation and Usage
 
-`joint_tiling_schedule_problem_v1` defines a discrete optimization problem over:
+### As a Python Library
 
-- one recipe choice per region
-- one start time per active action
-- zero or more SRAM residency windows per value
-- one SRAM offset per active SRAM item
+```python
+from nnc_joint_solver import (
+    V0JointScheduleSolver,
+    V1JointScheduleSolver,
+    LatestJointScheduleSolver,
+    JointScheduleSolver,
+    JointProblem,
+    JointSolution,
+    JointFailure,
+)
 
-The contract objective is `min_makespan`: minimize the completion time of the
-last scheduled action while satisfying dataflow, boundary, resource, residency,
-and SRAM-capacity constraints.
+problem = JointProblem.from_json(payload)
+solver = LatestJointScheduleSolver()  # currently points to V1
+result = solver.solve(problem)
 
-At the contract level, the solver is choosing jointly:
-
-- a recipe `p(r)` for each region `r`
-- an active action set induced by those recipe choices, plus any optional
-  spill/reload actions it decides to schedule
-- an integer start time `s_a` for every scheduled action `a`
-- SRAM residency intervals for values that must be present in fast memory
-- aligned byte offsets for all active SRAM items
-
-## Formal Statement
-
-Let:
-
-- `R` be the set of regions
-- `P_r` be the legal recipes for region `r`
-- `A` be the set of declared actions
-- `V` be the set of logical values
-- `E` be the set of dependency edges
-- `B` be the set of boundary constraints
-- `K` be the set of resource kinds, with `slot_count = 1` for every resource in
-  v1
-- `I_fixed` be the fixed SRAM items declared in the problem
-- `C` be `sram_capacity_bytes`
-
-Decision variables:
-
-- `x_{r,p} in {0,1}`: recipe `p` is selected for region `r`
-- `y_a in {0,1}`: action `a` is scheduled
-- `s_a in Z_{>=0}`: start time of scheduled action `a`
-- `T in Z_{>=0}`: makespan
-- for each value `v`, a sequence of SRAM windows
-  `W_v = {[b_{v,k}, e_{v,k})}_k`
-- for each active SRAM item `i`, an aligned offset `o_i in Z_{>=0}`
-
-Derived quantities:
-
-- `end(a) = s_a + duration(a) + launch_overhead(a)`
-- mandatory actions are the union of `activates_action_ids` across the selected
-  recipes
-- generated resident-window SRAM items are in one-to-one correspondence with
-  `residency_windows`
-
-Minimize:
-
-```text
-minimize T
-subject to T = max_a end(a)
+if isinstance(result, JointSolution):
+    print(f"makespan = {result.objective_value}")
+else:
+    print(f"failed: {result.status} / {result.error_category}")
 ```
 
-Subject to the validator-enforced constraints:
+### As a CLI Tool
 
-1. Recipe selection:
-   `sum_{p in P_r} x_{r,p} = 1` for every region `r`.
-2. Boundary compatibility:
-   for each boundary `(r_src, r_dst) in B`, the selected pair
-   `(p(r_src), p(r_dst))` must appear in `compatible_recipe_pairs`.
-3. Action coverage:
-   every mandatory action must be scheduled exactly once; optional actions may
-   be scheduled at most once; no other actions may appear.
-4. Precedence:
-   for every active dependency edge `(u, v) in E`,
-   `end(u) <= s_v`.
-5. Resource exclusivity:
-   if two scheduled actions use the same `resource_kind`, their execution
-   intervals may not overlap. In v1 this is a unary-resource model.
-6. Residency legality:
-   values must enter SRAM only at legal anchors, satisfy
-   `initial_tier` / `required_final_tier`, obey
-   `must_keep` / `allows_multiple_sram_windows`, and use matching
-   spill/reload actions when leaving and re-entering SRAM.
-7. Read legality:
-   compute, `dma_out`, and spill actions may read a value only while that value
-   is resident in SRAM for the full action interval.
-8. SRAM placement:
-   every active fixed or generated SRAM item must have one allocation;
-   allocations must satisfy alignment; items whose lifetimes overlap in time may
-   not overlap in address space; every item must fit within `[0, C)`.
-9. Objective consistency:
-   the returned `objective_value` must equal the actual makespan induced by the
-   schedule.
-
-The exact legality check is implemented in
-`src/nnc_joint_solver/validation.py`, so that file is the normative source for
-accepted and rejected solutions.
-
-## Solver Versions
-
-The repository now keeps versioned algorithms under `src/nnc_joint_solver/`:
-
-- `v0/`: the original deterministic baseline
-- `v1/`: the current default solver
-
-### `v0`
-
-`BaselineJointScheduleSolver` / `V0JointScheduleSolver` is intentionally much
-narrower than the full contract problem above. Its behavior is:
-
-- select the first declared recipe for every region
-- schedule only the mandatory actions induced by those recipe choices
-- never schedule optional spill/reload actions
-- compute a topological order, then do a deterministic earliest-start list
-  schedule subject to dependency and unary-resource constraints
-- delay `dma_in` actions when possible so they finish just before their paired
-  compute action, reducing unnecessary SRAM overlap
-- create minimal residency windows from producer completion to last active
-  consumer completion, extending to the makespan when a value must end in SRAM
-- generate one resident-window SRAM item per residency window
-- pack fixed and generated SRAM items with a greedy first-fit allocator ordered
-  by lifetime start time
-
-So `v0` does **not** search recipe combinations, does not insert optional
-transfer actions, and does not optimize globally over the entire contract
-decision space. It is a deterministic reference implementation that returns a
-valid solution for the no-optional-action subset when one fits.
-
-### `v1`
-
-`V1JointScheduleSolver` is the default CLI solver. Compared with `v0`, it adds:
-
-- recipe search instead of always picking the first recipe per region
-- boundary-aware pruning so incompatible recipe pairs are rejected early
-- critical-path-driven ready-queue ordering for active actions
-- exhaustive evaluation on small recipe spaces and beam search on larger ones
-
-## CLI
-
-The checked-in executable is:
+The CLI receives a `JointProblem` JSON on stdin and outputs a `JointSolution` or `JointFailure` JSON on stdout:
 
 ```bash
-bin/nnc-joint-solver
+# Use the default latest version (V1)
+echo '{"schema_version": "joint_tiling_schedule_problem_v1", ...}' | nnc-joint-solver
+
+# Specify V0
+echo '...' | nnc-joint-solver --solver-version v0
 ```
 
-It reads a `joint_tiling_schedule_problem_v1` JSON object from stdin and writes
-either:
+### Subprocess Invocation
 
-- `joint_tiling_schedule_solution_v1`
-- `joint_tiling_schedule_failure_v1`
+Use `CliJointScheduleSolver` to invoke the solver as a subprocess:
 
-to stdout.
+```python
+from nnc_joint_solver import CliJointScheduleSolver
 
-Structured infeasible/error payloads exit `0`. Transport or protocol failures
-exit non-zero.
-
-By default the CLI runs `v1`. To force the old baseline:
-
-```bash
-bin/nnc-joint-solver --solver-version v0
+transport = CliJointScheduleSolver(
+    command=["nnc-joint-solver"],
+    timeout_seconds=10.0,
+)
+result = transport.solve(problem)  # JointSolution | JointFailure
 ```
 
-## Development
+## API Reference
 
-Run tests from the parent checkout or inside this repository:
+### Abstract Interface
 
-```bash
-pytest tests/test_solver.py -v
+All solvers implement the `JointScheduleSolver` abstract base class:
+
+```python
+class JointScheduleSolver(ABC):
+    @abstractmethod
+    def solve(self, problem: JointProblem) -> JointSolution | JointFailure:
+        ...
 ```
 
-## Benchmark
+**Input:** `JointProblem` — the full description of the joint optimization problem.
+**Output:** a discriminated union: `JointSolution` on success, `JointFailure` on error.
 
-You can benchmark solver quality independently from the compiler once a fixed
-`joint_tiling_schedule_problem_v1` JSON has been exported:
+### Core Data Models
 
-```bash
-python benchmarks/run_solver_benchmark.py \
-  --problem benchmarks/problems/resnet18_o3_1m.problem.json
+All data models are defined in `ir/joint_tiling_schedule.py` as frozen dataclasses with `to_json()` / `from_json()` bidirectional JSON serialization.
+
+#### Enumerations
+
+| Enum | Values | Description |
+|------|--------|-------------|
+| `JointRegionKind` | `single_op`, `fused_group` | Compute region type |
+| `JointValueTier` | `unmaterialized`, `input`, `const`, `slow`, `sram` | Value storage tier |
+| `JointSramItemKind` | `temp_interval`, `transfer_buffer`, `resident_window` | SRAM item type |
+| `JointActionKind` | `compute`, `dma_in`, `dma_out`, `spill`, `reload` | Action type |
+| `JointDependencyEdgeKind` | `data`, `order` | Dependency edge type |
+| `JointResourceKind` | `DMA`, `MATMUL`, `SHAPE`, `OTHER` | Hardware resource type |
+| `JointFailureStatus` | `infeasible`, `timeout`, `invalid_problem`, `error` | Failure status code |
+| `JointFailureCategory` | 8 categories (`dependency_violation`, `resource_overlap`, `sram_capacity_exceeded`, etc.) | Detailed error classification |
+
+#### Problem Side
+
+```python
+@dataclass(frozen=True)
+class JointProblem:
+    schema_version: str              # "joint_tiling_schedule_problem_v1"
+    regions: tuple[JointRegion, ...]
+    recipes: tuple[JointRecipe, ...]
+    values: tuple[JointValue, ...]
+    actions: tuple[JointAction, ...]
+    boundary_constraints: tuple[JointBoundaryConstraint, ...]
+    dependency_edges: tuple[JointDependencyEdge, ...]
+    resources: tuple[JointResource, ...]        # must include DMA/MATMUL/SHAPE/OTHER
+    sram_capacity_bytes: int                    # SRAM capacity limit
+    sram_items: tuple[JointSramItem, ...]       # fixed SRAM allocation requirements
+    default_alignment_bytes: int                # default alignment in bytes
+    objective: str                              # "minimize_makespan"
 ```
 
-The benchmark score is the solver's returned `objective_value` (makespan). A
-smaller score is better. If the solver fails to produce a valid solution, the
-benchmark reports `score: null` plus the structured failure fields.
+- `JointRegion` — a compute region with input/output value IDs, predecessor/successor region IDs.
+- `JointRecipe` — a tiling strategy for a region, including tile_spec, layout_spec, activated action IDs, value footprint, and cost parameters.
+- `JointValue` — a tensor/value with size, initial/final tier, producer/consumer, spillability, and SRAM residency constraints.
+- `JointAction` — an operation (compute/DMA/spill/reload) with resource kind, duration, launch overhead, read/write value IDs, and temp bytes.
+- `JointBoundaryConstraint` — constraints between adjacent regions: which recipe pairs are compatible.
+- `JointDependencyEdge` — a directed dependency edge between actions.
+
+#### Solution Side
+
+```python
+@dataclass(frozen=True)
+class JointSolution:
+    schema_version: str                          # "joint_tiling_schedule_solution_v1"
+    selected_recipes: tuple[JointSelectedRecipe, ...]    # chosen recipe per region
+    scheduled_actions: tuple[JointScheduledAction, ...]  # start time per action
+    residency_windows: tuple[JointResidencyWindow, ...]  # SRAM residency windows for values
+    objective_value: int                         # makespan
+    generated_sram_items: tuple[JointSramItem, ...]      # SRAM items generated from residency windows
+    sram_allocations: tuple[JointSramAllocation, ...]    # offset per SRAM item
+    diagnostics: object                          # optional diagnostic info
+```
+
+#### Failure Side
+
+```python
+@dataclass(frozen=True)
+class JointFailure:
+    schema_version: str                          # "joint_tiling_schedule_failure_v1"
+    status: JointFailureStatus                   # failure status
+    error_category: JointFailureCategory         # error category
+    diagnostics: object                          # diagnostic details
+```
+
+### CLI Transport Layer
+
+`CliJointScheduleSolver` wraps the subprocess JSON communication protocol:
+
+- Serializes `JointProblem` to JSON and writes it to the subprocess stdin
+- Reads JSON from subprocess stdout, deserializes into `JointSolution` or `JointFailure` based on `schema_version`
+- Handles timeouts (`DEFAULT_SOLVER_TIMEOUT_SECONDS = 5.0`), process errors, and format errors
+
+### Schema Versions
+
+The wire protocol uses explicit version strings:
+
+| Scenario | schema_version |
+|----------|---------------|
+| Input | `joint_tiling_schedule_problem_v1` |
+| Success output | `joint_tiling_schedule_solution_v1` |
+| Failure output | `joint_tiling_schedule_failure_v1` |
+
+### Solver Versions
+
+| Class | Description |
+|-------|-------------|
+| `V0JointScheduleSolver` | Baseline solver, picks the first recipe per region |
+| `V1JointScheduleSolver` | Heuristic solver with beam search + local search |
+| `LatestJointScheduleSolver` | Points to the current latest version (V1) |
+| `BaselineJointScheduleSolver` | Alias for `V0JointScheduleSolver` |
+
+## Developing a New Algorithm
+
+### 1. Create a Solver Implementation
+
+Create a new version directory under `src/nnc_joint_solver/` and implement the `JointScheduleSolver` interface:
+
+```
+src/nnc_joint_solver/v2/
+  __init__.py      # export V2JointScheduleSolver
+  solver.py        # implementation
+```
+
+Minimal skeleton for `v2/solver.py`:
+
+```python
+from nnc_joint_solver.base import JointScheduleSolver
+from nnc_joint_solver.ir.joint_tiling_schedule import (
+    JointProblem,
+    JointSolution,
+    JointFailure,
+)
+
+
+class V2JointScheduleSolver(JointScheduleSolver):
+    def solve(self, problem: JointProblem) -> JointSolution | JointFailure:
+        # 1. (optional) Validate the problem
+        # 2. Select recipes
+        # 3. Schedule actions
+        # 4. Compute SRAM residency windows and allocations
+        # 5. Construct and return JointSolution or JointFailure
+        ...
+```
+
+### 2. Leverage Shared Utilities
+
+`solve_utils.py` provides reusable scheduling infrastructure:
+
+| Function | Purpose |
+|----------|---------|
+| `solve_recipe_selection()` | Full pipeline: build selected recipes → determine active actions → topological sort → schedule → residency windows → SRAM allocation → validate → return solution |
+| `topological_action_order()` | Kahn's topological sort on dependency edges with customizable tie-breaking priority |
+| `schedule_ordered_actions()` | Assign start times in topological order, handling resource exclusivity and JIT DMA delay heuristic |
+| `_minimal_residency_windows()` | Compute minimal SRAM residency time windows |
+| `_pack_sram_allocations()` | First-fit decreasing interval packing algorithm |
+
+Most new algorithms only need to focus on the **recipe selection strategy**, then call `solve_recipe_selection()` to get a complete solution:
+
+```python
+from nnc_joint_solver.solve_utils import solve_recipe_selection
+
+class V2JointScheduleSolver(JointScheduleSolver):
+    def solve(self, problem: JointProblem) -> JointSolution | JointFailure:
+        # Custom recipe selection logic
+        selected = {...}  # region_id -> recipe_id
+        return solve_recipe_selection(problem, selected)
+```
+
+### 3. Register the Solver
+
+Update the following files to make the new solver available:
+
+**`src/nnc_joint_solver/v2/__init__.py`:**
+
+```python
+from nnc_joint_solver.v2.solver import V2JointScheduleSolver
+
+__all__ = ["V2JointScheduleSolver"]
+```
+
+**`src/nnc_joint_solver/solver.py` — add export and update latest:**
+
+```python
+from nnc_joint_solver.v2.solver import V2JointScheduleSolver
+
+LatestJointScheduleSolver = V2JointScheduleSolver  # update to point here
+```
+
+**`src/nnc_joint_solver/cli.py` — add CLI version option:**
+
+```python
+parser.add_argument("--solver-version", choices=("v0", "v1", "v2"), default="v2")
+```
+
+### 4. Validation
+
+`validation.py` provides comprehensive constraint checking:
+
+- `validate_joint_problem()` — validates problem structural integrity
+- `validate_joint_solution()` — validates that the solution satisfies all constraints (recipe coverage, action scheduling legality, no resource overlaps, dependency edges satisfied, boundary compatibility, SRAM capacity and overlap checks)
+
+It is recommended to call validation before returning from the solver to ensure a valid solution.
