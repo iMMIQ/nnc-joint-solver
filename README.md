@@ -6,12 +6,60 @@ A joint solver for the Neural Network Compiler that solves the combined **tiling
 
 Given a `JointProblem`, the solver must simultaneously make the following decisions:
 
-1. **Recipe Selection** — Each compute region has multiple candidate tiling strategies (recipes). The solver picks exactly one recipe per region, and adjacent regions' recipes must satisfy boundary compatibility constraints (`boundary_constraints`).
-2. **Action Scheduling** — All actions (compute, DMA in/out, spill, reload) must be assigned start times that respect dependency edge constraints and resource exclusivity (no two actions on the same resource may overlap in time).
-3. **SRAM Residency Windows** — Determine the time interval during which each value that needs to reside in SRAM is present, ensuring values are resident when read.
-4. **SRAM Offset Allocation** — Assign memory offsets to all SRAM items (temp buffers, transfer buffers, resident windows) so that simultaneously-live items do not overlap spatially, and total usage stays within `sram_capacity_bytes`.
+1. **Recipe Selection** — Pick exactly one tiling strategy (recipe) per compute region.
+2. **Action Scheduling** — Assign a start time to each active action.
+3. **SRAM Residency Windows** — Determine SRAM residency time intervals for values that must reside in SRAM.
+4. **SRAM Offset Allocation** — Assign memory offsets to all SRAM items.
 
-**Objective: minimize makespan** (the end time of the last action).
+**Objective: minimize makespan** (the maximum end time across all scheduled actions).
+
+The solution must satisfy the following constraints (the normative constraint-checking implementation is in `validation.py`):
+
+### Recipe Selection Constraints
+
+- Each region must have exactly one selected recipe, and that recipe must belong to the region.
+- For every adjacent region pair (regions sharing output/input values), the chosen recipe pair must appear in the corresponding `JointBoundaryConstraint`'s `compatible_recipe_pairs`.
+
+### Action Scheduling Constraints
+
+- All mandatory actions (induced by the `activates_action_ids` of selected recipes) must be scheduled.
+- Optional actions (spill/reload) may be scheduled, but no action outside the mandatory + optional set may appear.
+- An action's execution interval is `[start_time, start_time + duration + launch_overhead)`.
+- **Dependency edges**: for each dependency edge `src -> dst` where both actions are scheduled, `end(src) <= start(dst)`.
+- **Resource exclusivity**: two actions on the same `resource_kind` may not have overlapping execution intervals.
+
+### SRAM Residency Constraints
+
+- Residency windows for the same value may not overlap in time.
+- A value with `initial_tier == sram` must have its first window start at time 0.
+- A value with `required_final_tier == sram` must have its last window end at the makespan (`objective_value`).
+- A value with `allows_multiple_sram_windows == false` may have at most one residency window.
+- Each window's start time must be anchored to a valid "open time": for the first window, time 0 (when `initial_tier == sram`) or the end time of a compute/dma_in/reload action that writes this value; for subsequent windows, exactly the end time of a compute/dma_in/reload action writing this value.
+- A value with `must_keep == true` must have exactly one continuous window starting from the earliest valid open time and covering at least through the last active consumer's end time.
+- When a value leaves SRAM (previous window ends), a matching spill action must complete at exactly that time; when it re-enters SRAM (next window starts), a matching reload action must complete at exactly that time.
+
+### Read Legality
+
+- When a compute, dma_out, or spill action reads a value, that value must have a residency window covering the entire action execution interval `[start, end)`.
+
+### Transfer Legality
+
+- Spill/reload actions may only target values with `spillable == true`.
+- During a spill action's execution, the target value must be resident in SRAM.
+- A reload action must have a preceding completed spill action for the same value.
+
+### SRAM Placement Constraints
+
+- Every active SRAM item (problem-declared temp_interval/transfer_buffer + resident_window items generated from residency windows) must have exactly one offset allocation.
+- Offsets must be non-negative and satisfy `alignment_bytes`.
+- `offset + size_bytes` must not exceed `sram_capacity_bytes`.
+- Two items whose time lifetimes overlap must not have overlapping address ranges `[offset, offset + size_bytes)`.
+- At any point in time, the sum of all resident value sizes + all executing actions' `temp_bytes` must not exceed `sram_capacity_bytes`.
+
+### Objective Consistency
+
+- `objective_value` must equal the maximum end time across all scheduled actions.
+- The producer action of any value with `required_final_tier == sram` must complete by `objective_value`.
 
 ## Installation and Usage
 
